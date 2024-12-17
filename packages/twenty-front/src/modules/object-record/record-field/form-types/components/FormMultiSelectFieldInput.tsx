@@ -20,9 +20,9 @@ import { isDefined } from '~/utils/isDefined';
 type FormMultiSelectFieldInputProps = {
   label?: string;
   defaultValue: FieldMultiSelectValue | string | undefined;
+  options: SelectOption[];
   onPersist: (value: FieldMultiSelectValue | string) => void;
   VariablePicker?: VariablePickerComponent;
-  options: SelectOption[];
 };
 
 const StyledDisplayModeContainer = styled.button`
@@ -50,9 +50,9 @@ const StyledSelectInputContainer = styled.div`
 export const FormMultiSelectFieldInput = ({
   label,
   defaultValue,
+  options,
   onPersist,
   VariablePicker,
-  options,
 }: FormMultiSelectFieldInputProps) => {
   const inputId = useId();
 
