@@ -39,8 +39,10 @@ import { DataSourceService } from 'src/engine/metadata-modules/data-source/data-
 import { FieldMetadataService } from 'src/engine/metadata-modules/field-metadata/field-metadata.service';
 import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
 import { ObjectMetadataService } from 'src/engine/metadata-modules/object-metadata/object-metadata.service';
+import { DEMO_OBJECTS_DATA_SEEDS } from 'src/engine/seeder/data-seeds/demo-objects-data-seeds';
 import { PETS_DATA_SEEDS } from 'src/engine/seeder/data-seeds/pets-data-seeds';
 import { SURVEY_RESULTS_DATA_SEEDS } from 'src/engine/seeder/data-seeds/survey-results-data-seeds';
+import { DEMO_OBJECTS_METADATA_SEEDS } from 'src/engine/seeder/metadata-seeds/demo-objects-metadata-seeds';
 import { PETS_METADATA_SEEDS } from 'src/engine/seeder/metadata-seeds/pets-metadata-seeds';
 import { SURVEY_RESULTS_METADATA_SEEDS } from 'src/engine/seeder/metadata-seeds/survey-results-metadata-seeds';
 import { SeederService } from 'src/engine/seeder/seeder.service';
@@ -311,6 +313,13 @@ export class DataSeedWorkspaceCommand extends CommandRunner {
       workspaceId,
       SURVEY_RESULTS_METADATA_SEEDS,
       SURVEY_RESULTS_DATA_SEEDS,
+    );
+
+    await this.seederService.seedCustomObjects(
+      dataSourceId,
+      workspaceId,
+      DEMO_OBJECTS_METADATA_SEEDS,
+      DEMO_OBJECTS_DATA_SEEDS,
     );
   }
 }

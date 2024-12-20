@@ -2,17 +2,22 @@ import { ObjectMetadataSeed } from 'src/engine/seeder/interfaces/object-metadata
 
 import { FieldMetadataType } from 'src/engine/metadata-modules/field-metadata/field-metadata.entity';
 
-export const ALL_FIELD_TYPES_METADATA_SEEDS: ObjectMetadataSeed = {
-  labelPlural: 'AllFieldTypeObjects',
-  labelSingular: 'AllFieldTypeObject',
-  namePlural: 'all-field-type-objects',
-  nameSingular: 'all-field-type-object',
+export const DEMO_OBJECTS_METADATA_SEEDS: ObjectMetadataSeed = {
+  labelPlural: 'DemoObjects',
+  labelSingular: 'DemoObject',
+  namePlural: 'demo-objects',
+  nameSingular: 'demo-object',
   icon: 'IconSquareAsterisk',
   fields: [
     {
+      type: FieldMetadataType.TEXT,
+      label: 'Name (Text)',
+      name: 'exampleText',
+    },
+    {
       type: FieldMetadataType.SELECT,
       label: 'Species (Select)',
-      name: 'species',
+      name: 'exampleSelect',
       options: [
         { label: 'Dog', value: 'dog', position: 0, color: 'blue' },
         { label: 'Cat', value: 'cat', position: 1, color: 'red' },
@@ -23,103 +28,95 @@ export const ALL_FIELD_TYPES_METADATA_SEEDS: ObjectMetadataSeed = {
       ],
     },
     {
-      type: FieldMetadataType.TEXT,
-      label: 'Comments (Text)',
-      name: 'comments',
-    },
-    {
       type: FieldMetadataType.PHONES,
       label: 'Phone Numbers',
-      name: 'phoneNumbers',
+      name: 'examplePhoneNumbers',
     },
     {
       type: FieldMetadataType.EMAILS,
       label: 'Email Addresses',
-      name: 'emailAddresses',
+      name: 'exampleEmailAddresses',
     },
     {
       type: FieldMetadataType.DATE_TIME,
       label: 'Date and Time',
-      name: 'dateTime',
+      name: 'exampleDateTime',
     },
     {
       type: FieldMetadataType.DATE,
       label: 'Date',
-      name: 'date',
+      name: 'exampleDate',
     },
     {
       type: FieldMetadataType.BOOLEAN,
       label: 'Boolean',
-      name: 'booleanField',
+      name: 'exampleBoolean',
     },
     {
       type: FieldMetadataType.NUMBER,
       label: 'Number',
-      name: 'numberField',
+      name: 'exampleNumber',
     },
     {
       type: FieldMetadataType.NUMERIC,
       label: 'Numeric',
-      name: 'numericField',
+      name: 'exampleNumeric',
     },
     {
       type: FieldMetadataType.LINKS,
       label: 'Links',
-      name: 'links',
+      name: 'exampleLinks',
     },
     {
       type: FieldMetadataType.CURRENCY,
       label: 'Currency',
-      name: 'currency',
+      name: 'exampleCurrency',
     },
     {
       type: FieldMetadataType.FULL_NAME,
       label: 'Full Name',
-      name: 'fullName',
+      name: 'exampleFullName',
     },
     {
       type: FieldMetadataType.RATING,
       label: 'Rating',
-      name: 'rating',
+      name: 'exampleRating',
     },
     {
       type: FieldMetadataType.MULTI_SELECT,
       label: 'Multi Select',
-      name: 'multiSelect',
+      name: 'exampleMultiSelect',
       options: [
         { label: 'Option 1', value: 'option1', position: 0, color: 'blue' },
         { label: 'Option 2', value: 'option2', position: 1, color: 'red' },
+        { label: 'Option 3', value: 'option3', position: 2, color: 'green' },
       ],
     },
-    {
-      type: FieldMetadataType.RELATION,
-      label: 'Relation',
-      name: 'relation',
-    },
+    // TODO: add example relation with pets
     {
       type: FieldMetadataType.ADDRESS,
       label: 'Address',
-      name: 'address',
+      name: 'exampleAddress',
     },
     {
       type: FieldMetadataType.RAW_JSON,
       label: 'Raw JSON',
-      name: 'rawJson',
+      name: 'exampleRawJson',
     },
     {
       type: FieldMetadataType.RICH_TEXT,
       label: 'Rich Text',
-      name: 'richText',
+      name: 'exampleRichText',
     },
     {
       type: FieldMetadataType.ACTOR,
       label: 'Actor',
-      name: 'actor',
+      name: 'exampleActor',
     },
     {
       type: FieldMetadataType.ARRAY,
       label: 'Array',
-      name: 'arrayField',
+      name: 'exampleArray',
     },
   ],
 };
