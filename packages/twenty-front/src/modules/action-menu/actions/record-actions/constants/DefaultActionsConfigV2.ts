@@ -1,6 +1,7 @@
 import { useDeleteMultipleRecordsAction } from '@/action-menu/actions/record-actions/multiple-records/hooks/useDeleteMultipleRecordsAction';
 import { useExportMultipleRecordsAction } from '@/action-menu/actions/record-actions/multiple-records/hooks/useExportMultipleRecordsAction';
 import { MultipleRecordsActionKeys } from '@/action-menu/actions/record-actions/multiple-records/types/MultipleRecordsActionKeys';
+import { useCreateNewTableRecordNoSelectionRecordAction } from '@/action-menu/actions/record-actions/no-selection/hooks/useCreateNewTableRecordNoSelectionRecordAction';
 import { NoSelectionRecordActionKeys } from '@/action-menu/actions/record-actions/no-selection/types/NoSelectionRecordActionsKey';
 import { useAddToFavoritesSingleRecordAction } from '@/action-menu/actions/record-actions/single-record/hooks/useAddToFavoritesSingleRecordAction';
 import { useDeleteSingleRecordAction } from '@/action-menu/actions/record-actions/single-record/hooks/useDeleteSingleRecordAction';
@@ -24,6 +25,7 @@ import {
   IconFileExport,
   IconHeart,
   IconHeartOff,
+  IconPlus,
   IconTrash,
   IconTrashX,
 } from 'twenty-ui';
@@ -34,16 +36,32 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     actionHook: ActionHook;
   }
 > = {
+  createNewRecord: {
+    type: ActionMenuEntryType.Standard,
+    scope: ActionMenuEntryScope.RecordSelection,
+    key: NoSelectionRecordActionKeys.TABLE_CREATE_NEW_RECORD,
+    label: 'Create new record',
+    shortLabel: 'Create',
+    position: 0,
+    isPinned: true,
+    Icon: IconPlus,
+    availableOn: [ActionViewType.RECORD_TABLE_NO_SELECTION],
+    actionHook: useCreateNewTableRecordNoSelectionRecordAction,
+  },
   exportNoteToPdf: {
     type: ActionMenuEntryType.Standard,
     scope: ActionMenuEntryScope.RecordSelection,
     key: SingleRecordActionKeys.EXPORT_NOTE_TO_PDF,
     label: 'Export to PDF',
     shortLabel: 'Export',
-    position: 0,
+    position: 1,
     isPinned: false,
     Icon: IconFileExport,
-    availableOn: [ActionViewType.SHOW_PAGE],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
+      ActionViewType.SHOW_PAGE,
+    ],
     actionHook: useExportNoteAction,
   },
   addToFavoritesSingleRecord: {
@@ -52,11 +70,12 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: SingleRecordActionKeys.ADD_TO_FAVORITES,
     label: 'Add to favorites',
     shortLabel: 'Add to favorites',
-    position: 1,
+    position: 2,
     isPinned: true,
     Icon: IconHeart,
     availableOn: [
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
       ActionViewType.SHOW_PAGE,
     ],
     actionHook: useAddToFavoritesSingleRecordAction,
@@ -68,10 +87,11 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     label: 'Remove from favorites',
     shortLabel: 'Remove from favorites',
     isPinned: true,
-    position: 2,
+    position: 3,
     Icon: IconHeartOff,
     availableOn: [
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
       ActionViewType.SHOW_PAGE,
     ],
     actionHook: useRemoveFromFavoritesSingleRecordAction,
@@ -82,12 +102,13 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: SingleRecordActionKeys.DELETE,
     label: 'Delete record',
     shortLabel: 'Delete',
-    position: 3,
+    position: 4,
     Icon: IconTrash,
     accent: 'danger',
     isPinned: true,
     availableOn: [
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
       ActionViewType.SHOW_PAGE,
     ],
     actionHook: useDeleteSingleRecordAction,
@@ -98,11 +119,14 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: MultipleRecordsActionKeys.DELETE,
     label: 'Delete records',
     shortLabel: 'Delete',
-    position: 4,
+    position: 5,
     Icon: IconTrash,
     accent: 'danger',
     isPinned: true,
-    availableOn: [ActionViewType.INDEX_PAGE_BULK_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_BULK_SELECTION,
+      ActionViewType.RECORD_BOARD_BULK_SELECTION,
+    ],
     actionHook: useDeleteMultipleRecordsAction,
   },
   exportMultipleRecords: {
@@ -111,11 +135,14 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: MultipleRecordsActionKeys.EXPORT,
     label: 'Export records',
     shortLabel: 'Export',
-    position: 5,
+    position: 6,
     Icon: IconDatabaseExport,
     accent: 'default',
     isPinned: false,
-    availableOn: [ActionViewType.INDEX_PAGE_BULK_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_BULK_SELECTION,
+      ActionViewType.RECORD_BOARD_BULK_SELECTION,
+    ],
     actionHook: useExportMultipleRecordsAction,
   },
   exportView: {
@@ -124,11 +151,14 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: NoSelectionRecordActionKeys.EXPORT_VIEW,
     label: 'Export view',
     shortLabel: 'Export',
-    position: 6,
+    position: 7,
     Icon: IconDatabaseExport,
     accent: 'default',
     isPinned: false,
-    availableOn: [ActionViewType.INDEX_PAGE_NO_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_NO_SELECTION,
+      ActionViewType.RECORD_BOARD_NO_SELECTION,
+    ],
     actionHook: useExportMultipleRecordsAction,
   },
   destroySingleRecord: {
@@ -137,12 +167,13 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: SingleRecordActionKeys.DESTROY,
     label: 'Permanently destroy record',
     shortLabel: 'Destroy',
-    position: 7,
+    position: 8,
     Icon: IconTrashX,
     accent: 'danger',
     isPinned: true,
     availableOn: [
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
       ActionViewType.SHOW_PAGE,
     ],
     actionHook: useDestroySingleRecordAction,
@@ -153,7 +184,7 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: SingleRecordActionKeys.NAVIGATE_TO_PREVIOUS_RECORD,
     label: 'Navigate to previous record',
     shortLabel: '',
-    position: 8,
+    position: 9,
     isPinned: true,
     Icon: IconChevronUp,
     availableOn: [ActionViewType.SHOW_PAGE],
@@ -165,7 +196,7 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     key: SingleRecordActionKeys.NAVIGATE_TO_NEXT_RECORD,
     label: 'Navigate to next record',
     shortLabel: '',
-    position: 9,
+    position: 10,
     isPinned: true,
     Icon: IconChevronDown,
     availableOn: [ActionViewType.SHOW_PAGE],

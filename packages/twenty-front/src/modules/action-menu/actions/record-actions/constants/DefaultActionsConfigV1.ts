@@ -35,7 +35,7 @@ export const DEFAULT_ACTIONS_CONFIG_V1: Record<
     Icon: IconHeart,
     availableOn: [
       ActionViewType.SHOW_PAGE,
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
     ],
     actionHook: useAddToFavoritesSingleRecordAction,
   },
@@ -48,7 +48,7 @@ export const DEFAULT_ACTIONS_CONFIG_V1: Record<
     Icon: IconHeartOff,
     availableOn: [
       ActionViewType.SHOW_PAGE,
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
     ],
     actionHook: useRemoveFromFavoritesSingleRecordAction,
   },
@@ -63,7 +63,7 @@ export const DEFAULT_ACTIONS_CONFIG_V1: Record<
     isPinned: true,
     availableOn: [
       ActionViewType.SHOW_PAGE,
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
     ],
     actionHook: useDeleteSingleRecordAction,
   },
@@ -77,7 +77,10 @@ export const DEFAULT_ACTIONS_CONFIG_V1: Record<
     Icon: IconTrash,
     accent: 'danger',
     isPinned: true,
-    availableOn: [ActionViewType.INDEX_PAGE_BULK_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_BULK_SELECTION,
+      ActionViewType.RECORD_BOARD_BULK_SELECTION,
+    ],
     actionHook: useDeleteMultipleRecordsAction,
   },
   exportMultipleRecords: {
@@ -90,7 +93,10 @@ export const DEFAULT_ACTIONS_CONFIG_V1: Record<
     Icon: IconDatabaseExport,
     accent: 'default',
     isPinned: false,
-    availableOn: [ActionViewType.INDEX_PAGE_BULK_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_BULK_SELECTION,
+      ActionViewType.RECORD_BOARD_BULK_SELECTION,
+    ],
     actionHook: useExportMultipleRecordsAction,
   },
   exportView: {
@@ -103,7 +109,10 @@ export const DEFAULT_ACTIONS_CONFIG_V1: Record<
     Icon: IconDatabaseExport,
     accent: 'default',
     isPinned: false,
-    availableOn: [ActionViewType.INDEX_PAGE_NO_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_NO_SELECTION,
+      ActionViewType.RECORD_BOARD_NO_SELECTION,
+    ],
     actionHook: useExportMultipleRecordsAction,
   },
 };

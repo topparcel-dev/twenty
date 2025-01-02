@@ -37,7 +37,8 @@ export const WORKFLOW_RUNS_ACTIONS_CONFIG: Record<
     isPinned: true,
     Icon: IconHeart,
     availableOn: [
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
       ActionViewType.SHOW_PAGE,
     ],
     actionHook: useAddToFavoritesSingleRecordAction,
@@ -52,7 +53,8 @@ export const WORKFLOW_RUNS_ACTIONS_CONFIG: Record<
     position: 1,
     Icon: IconHeartOff,
     availableOn: [
-      ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
       ActionViewType.SHOW_PAGE,
     ],
     actionHook: useRemoveFromFavoritesSingleRecordAction,
@@ -66,7 +68,11 @@ export const WORKFLOW_RUNS_ACTIONS_CONFIG: Record<
     position: 2,
     isPinned: true,
     Icon: IconChevronUp,
-    availableOn: [ActionViewType.SHOW_PAGE],
+    availableOn: [
+      ActionViewType.SHOW_PAGE,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
+    ],
     actionHook: useNavigateToPreviousRecordSingleRecordAction,
   },
   navigateToNextRecord: {
@@ -78,7 +84,11 @@ export const WORKFLOW_RUNS_ACTIONS_CONFIG: Record<
     position: 3,
     isPinned: true,
     Icon: IconChevronDown,
-    availableOn: [ActionViewType.SHOW_PAGE],
+    availableOn: [
+      ActionViewType.SHOW_PAGE,
+      ActionViewType.RECORD_TABLE_SINGLE_RECORD_SELECTION,
+      ActionViewType.RECORD_BOARD_SINGLE_RECORD_SELECTION,
+    ],
     actionHook: useNavigateToNextRecordSingleRecordAction,
   },
   exportMultipleRecords: {
@@ -91,7 +101,10 @@ export const WORKFLOW_RUNS_ACTIONS_CONFIG: Record<
     Icon: IconDatabaseExport,
     accent: 'default',
     isPinned: false,
-    availableOn: [ActionViewType.INDEX_PAGE_BULK_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_BULK_SELECTION,
+      ActionViewType.RECORD_BOARD_BULK_SELECTION,
+    ],
     actionHook: useExportMultipleRecordsAction,
   },
   exportView: {
@@ -104,7 +117,10 @@ export const WORKFLOW_RUNS_ACTIONS_CONFIG: Record<
     Icon: IconDatabaseExport,
     accent: 'default',
     isPinned: false,
-    availableOn: [ActionViewType.INDEX_PAGE_NO_SELECTION],
+    availableOn: [
+      ActionViewType.RECORD_TABLE_NO_SELECTION,
+      ActionViewType.RECORD_BOARD_NO_SELECTION,
+    ],
     actionHook: useExportMultipleRecordsAction,
   },
 };

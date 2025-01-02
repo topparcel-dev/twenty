@@ -7,6 +7,7 @@ import { MainContextStoreComponentInstanceIdSetterEffect } from '@/context-store
 import { ContextStoreComponentInstanceContext } from '@/context-store/states/contexts/ContextStoreComponentInstanceContext';
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
 import { useObjectNameSingularFromPlural } from '@/object-metadata/hooks/useObjectNameSingularFromPlural';
+import { getRecordIndexIdFromObjectNamePlural } from '@/object-record/record-board/utils/getRecordIndexIdFromObjectNamePlural';
 import { lastShowPageRecordIdState } from '@/object-record/record-field/states/lastShowPageRecordId';
 import { RecordIndexContainer } from '@/object-record/record-index/components/RecordIndexContainer';
 import { RecordIndexContainerContextStoreNumberOfSelectedRecordsEffect } from '@/object-record/record-index/components/RecordIndexContainerContextStoreNumberOfSelectedRecordsEffect';
@@ -30,7 +31,7 @@ const StyledIndexContainer = styled.div`
 export const RecordIndexPage = () => {
   const objectNamePlural = useParams().objectNamePlural ?? '';
 
-  const recordIndexId = objectNamePlural ?? '';
+  const recordIndexId = getRecordIndexIdFromObjectNamePlural(objectNamePlural);
 
   const { objectNameSingular } = useObjectNameSingularFromPlural({
     objectNamePlural,

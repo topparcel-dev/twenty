@@ -1,4 +1,4 @@
-import { useRecordIndexContextOrThrow } from '@/object-record/record-index/contexts/RecordIndexContext';
+import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { DEFAULT_CELL_SCOPE } from '@/object-record/record-table/record-table-cell/hooks/useOpenRecordTableCellV2';
 import { useSelectedTableCellEditMode } from '@/object-record/record-table/record-table-cell/hooks/useSelectedTableCellEditMode';
 import { recordTablePendingRecordIdByGroupComponentFamilyState } from '@/object-record/record-table/states/recordTablePendingRecordIdByGroupComponentFamilyState';
@@ -12,9 +12,13 @@ import { useRecoilCallback } from 'recoil';
 import { v4 } from 'uuid';
 import { isDefined } from '~/utils/isDefined';
 
-export const useCreateNewTableRecord = (recordTableId: string) => {
-  const { objectMetadataItem } = useRecordIndexContextOrThrow();
-
+export const useCreateNewTableRecord = ({
+  objectMetadataItem,
+  recordTableId,
+}: {
+  objectMetadataItem: ObjectMetadataItem;
+  recordTableId: string;
+}) => {
   const { setSelectedTableCellEditMode } = useSelectedTableCellEditMode({
     scopeId: recordTableId,
   });
