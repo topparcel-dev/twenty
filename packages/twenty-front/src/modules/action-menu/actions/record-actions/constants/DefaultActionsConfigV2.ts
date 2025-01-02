@@ -1,7 +1,7 @@
 import { useDeleteMultipleRecordsAction } from '@/action-menu/actions/record-actions/multiple-records/hooks/useDeleteMultipleRecordsAction';
 import { useExportMultipleRecordsAction } from '@/action-menu/actions/record-actions/multiple-records/hooks/useExportMultipleRecordsAction';
 import { MultipleRecordsActionKeys } from '@/action-menu/actions/record-actions/multiple-records/types/MultipleRecordsActionKeys';
-import { useCreateNewTableRecordNoSelectionRecordAction } from '@/action-menu/actions/record-actions/no-selection/hooks/useCreateNewTableRecordNoSelectionRecordAction';
+import { useCreateNewRecordNoSelectionRecordAction } from '@/action-menu/actions/record-actions/no-selection/hooks/useCreateNewRecordNoSelectionRecordAction';
 import { NoSelectionRecordActionKeys } from '@/action-menu/actions/record-actions/no-selection/types/NoSelectionRecordActionsKey';
 import { useAddToFavoritesSingleRecordAction } from '@/action-menu/actions/record-actions/single-record/hooks/useAddToFavoritesSingleRecordAction';
 import { useDeleteSingleRecordAction } from '@/action-menu/actions/record-actions/single-record/hooks/useDeleteSingleRecordAction';
@@ -39,14 +39,17 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
   createNewRecord: {
     type: ActionMenuEntryType.Standard,
     scope: ActionMenuEntryScope.Global,
-    key: NoSelectionRecordActionKeys.TABLE_CREATE_NEW_RECORD,
+    key: NoSelectionRecordActionKeys.CREATE_NEW_RECORD,
     label: 'Create new record',
     shortLabel: 'New record',
     position: 0,
     isPinned: true,
     Icon: IconPlus,
-    availableOn: [ActionViewType.RECORD_TABLE_NO_SELECTION],
-    actionHook: useCreateNewTableRecordNoSelectionRecordAction,
+    availableOn: [
+      ActionViewType.RECORD_TABLE_NO_SELECTION,
+      ActionViewType.RECORD_BOARD_NO_SELECTION,
+    ],
+    actionHook: useCreateNewRecordNoSelectionRecordAction,
   },
   exportNoteToPdf: {
     type: ActionMenuEntryType.Standard,
