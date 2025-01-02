@@ -41,7 +41,7 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
     scope: ActionMenuEntryScope.Global,
     key: NoSelectionRecordActionKeys.TABLE_CREATE_NEW_RECORD,
     label: 'Create new record',
-    shortLabel: 'Create',
+    shortLabel: 'New record',
     position: 0,
     isPinned: true,
     Icon: IconPlus,
