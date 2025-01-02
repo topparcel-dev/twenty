@@ -1,9 +1,6 @@
 import { ActionHookWithObjectMetadataItem } from '@/action-menu/actions/types/ActionHook';
+import { commandMenuViewableRecordIdState } from '@/command-menu/states/commandMenuViewableRecordIdState';
 import { useCreateOneRecord } from '@/object-record/hooks/useCreateOneRecord';
-import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
-import { viewableRecordNameSingularState } from '@/object-record/record-right-drawer/states/viewableRecordNameSingularState';
-import { useRightDrawer } from '@/ui/layout/right-drawer/hooks/useRightDrawer';
-import { RightDrawerPages } from '@/ui/layout/right-drawer/types/RightDrawerPages';
 import { useSetRecoilState } from 'recoil';
 import { v4 } from 'uuid';
 
@@ -13,20 +10,15 @@ export const useCreateNewRecordNoSelectionRecordAction: ActionHookWithObjectMeta
       objectNameSingular: objectMetadataItem.nameSingular,
     });
 
-    const setViewableRecordId = useSetRecoilState(viewableRecordIdState);
-    const setViewableRecordNameSingular = useSetRecoilState(
-      viewableRecordNameSingularState,
+    const setCommandMenuViewableRecordId = useSetRecoilState(
+      commandMenuViewableRecordIdState,
     );
-
-    const { openRightDrawer } = useRightDrawer();
 
     const onClick = async () => {
       const newRecordId = v4();
       await createOneRecord({ id: newRecordId });
 
-      setViewableRecordId(newRecordId);
-      setViewableRecordNameSingular(objectMetadataItem.nameSingular);
-      openRightDrawer(RightDrawerPages.ViewRecord);
+      setCommandMenuViewableRecordId(newRecordId);
     };
 
     return {
