@@ -1,5 +1,4 @@
 import { RecordIndexActionMenu } from '@/action-menu/components/RecordIndexActionMenu';
-import { contextStoreNumberOfSelectedRecordsComponentState } from '@/context-store/states/contextStoreNumberOfSelectedRecordsComponentState';
 import { useFilteredObjectMetadataItems } from '@/object-metadata/hooks/useFilteredObjectMetadataItems';
 import { isObjectMetadataReadOnly } from '@/object-metadata/utils/isObjectMetadataReadOnly';
 import { RecordIndexPageKanbanAddButton } from '@/object-record/record-index/components/RecordIndexPageKanbanAddButton';
@@ -8,7 +7,6 @@ import { useRecordIndexContextOrThrow } from '@/object-record/record-index/conte
 import { recordIndexViewTypeState } from '@/object-record/record-index/states/recordIndexViewTypeState';
 import { PageHeaderOpenCommandMenuButton } from '@/ui/layout/page-header/components/PageHeaderOpenCommandMenuButton';
 import { PageHeader } from '@/ui/layout/page/components/PageHeader';
-import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValueV2';
 import { ViewType } from '@/views/types/ViewType';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
 import { useRecoilValue } from 'recoil';
@@ -32,10 +30,6 @@ export const RecordIndexPageHeader = () => {
 
   const { recordIndexId } = useRecordIndexContextOrThrow();
 
-  const numberOfSelectedRecords = useRecoilComponentValueV2(
-    contextStoreNumberOfSelectedRecordsComponentState,
-  );
-
   const isPageHeaderV2Enabled = useIsFeatureEnabled(
     FeatureFlagKey.IsPageHeaderV2Enabled,
   );
@@ -45,8 +39,7 @@ export const RecordIndexPageHeader = () => {
     isObjectMetadataReadOnly(objectMetadataItem);
 
   const shouldDisplayAddButton =
-    (numberOfSelectedRecords === 0 || !isPageHeaderV2Enabled) &&
-    !isObjectMetadataItemReadOnly;
+    !isPageHeaderV2Enabled && !isObjectMetadataItemReadOnly;
 
   const isTable = recordIndexViewType === ViewType.Table;
 
