@@ -1,7 +1,6 @@
 import { ActionHookWithObjectMetadataItem } from '@/action-menu/actions/types/ActionHook';
-import { commandMenuViewableRecordIdState } from '@/command-menu/states/commandMenuViewableRecordIdState';
+import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { useCreateOneRecord } from '@/object-record/hooks/useCreateOneRecord';
-import { useSetRecoilState } from 'recoil';
 import { v4 } from 'uuid';
 
 export const useCreateNewRecordNoSelectionRecordAction: ActionHookWithObjectMetadataItem =
@@ -10,15 +9,13 @@ export const useCreateNewRecordNoSelectionRecordAction: ActionHookWithObjectMeta
       objectNameSingular: objectMetadataItem.nameSingular,
     });
 
-    const setCommandMenuViewableRecordId = useSetRecoilState(
-      commandMenuViewableRecordIdState,
-    );
+    const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
 
     const onClick = async () => {
       const newRecordId = v4();
       await createOneRecord({ id: newRecordId });
 
-      setCommandMenuViewableRecordId(newRecordId);
+      openRecordInCommandMenu(newRecordId);
     };
 
     return {
