@@ -101,7 +101,7 @@ export const DEFAULT_ACTIONS_CONFIG_V1: Record<
   },
   exportView: {
     type: ActionMenuEntryType.Standard,
-    scope: ActionMenuEntryScope.RecordSelection,
+    scope: ActionMenuEntryScope.Global,
     key: NoSelectionRecordActionKeys.EXPORT_VIEW,
     label: 'Export view',
     shortLabel: 'Export',

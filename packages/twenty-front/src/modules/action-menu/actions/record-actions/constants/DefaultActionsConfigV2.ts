@@ -38,7 +38,7 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
 > = {
   createNewRecord: {
     type: ActionMenuEntryType.Standard,
-    scope: ActionMenuEntryScope.RecordSelection,
+    scope: ActionMenuEntryScope.Global,
     key: NoSelectionRecordActionKeys.TABLE_CREATE_NEW_RECORD,
     label: 'Create new record',
     shortLabel: 'Create',
@@ -147,7 +147,7 @@ export const DEFAULT_ACTIONS_CONFIG_V2: Record<
   },
   exportView: {
     type: ActionMenuEntryType.Standard,
-    scope: ActionMenuEntryScope.RecordSelection,
+    scope: ActionMenuEntryScope.Global,
     key: NoSelectionRecordActionKeys.EXPORT_VIEW,
     label: 'Export view',
     shortLabel: 'Export',
