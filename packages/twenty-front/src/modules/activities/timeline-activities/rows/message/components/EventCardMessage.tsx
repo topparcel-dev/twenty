@@ -2,9 +2,10 @@ import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 import { OverflowingTextWithTooltip } from 'twenty-ui';
 
-import { useEmailThread } from '@/activities/emails/hooks/useEmailThread';
 import { EmailThreadMessage } from '@/activities/emails/types/EmailThreadMessage';
 import { EventCardMessageNotShared } from '@/activities/timeline-activities/rows/message/components/EventCardMessageNotShared';
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
+import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useFindOneRecord } from '@/object-record/hooks/useFindOneRecord';
 import { useUpsertRecordsInStore } from '@/object-record/record-store/hooks/useUpsertRecordsInStore';
@@ -80,7 +81,7 @@ export const EventCardMessage = ({
     },
   });
 
-  const { openEmailThread } = useEmailThread();
+  const { openRecordInCommandMenu } = useCommandMenu();
 
   if (isDefined(error)) {
     const shouldHideMessageContent = error.graphQLErrors.some(
@@ -121,7 +122,13 @@ export const EventCardMessage = ({
           </StyledEmailParticipants>
         </StyledEmailTop>
         <StyledEmailBody
-          onClick={() => openEmailThread(message.messageThreadId)}
+          onClick={() =>
+            openRecordInCommandMenu({
+              recordId: message.messageThreadId,
+              objectNameSingular: CoreObjectNameSingular.MessageThread,
+              page: CommandMenuPages.ViewEmailThread,
+            })
+          }
         >
           {message.text}
         </StyledEmailBody>

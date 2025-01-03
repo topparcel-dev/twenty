@@ -4,8 +4,10 @@ import { Avatar, GRAY_SCALE } from 'twenty-ui';
 
 import { ActivityRow } from '@/activities/components/ActivityRow';
 import { EmailThreadNotShared } from '@/activities/emails/components/EmailThreadNotShared';
-import { useEmailThread } from '@/activities/emails/hooks/useEmailThread';
 import { emailThreadIdWhenEmailThreadWasClosedState } from '@/activities/emails/states/lastViewableEmailThreadIdState';
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
+import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
+import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useRightDrawer } from '@/ui/layout/right-drawer/hooks/useRightDrawer';
 import { MessageChannelVisibility, TimelineThread } from '~/generated/graphql';
 import { formatToHumanReadableDate } from '~/utils/date-utils';
@@ -71,7 +73,7 @@ type EmailThreadPreviewProps = {
 };
 
 export const EmailThreadPreview = ({ thread }: EmailThreadPreviewProps) => {
-  const { openEmailThread } = useEmailThread();
+  const { openRecordInCommandMenu } = useCommandMenu();
 
   const visibility = thread.visibility;
 
@@ -111,12 +113,16 @@ export const EmailThreadPreview = ({ thread }: EmailThreadPreviewProps) => {
             emailThreadIdWhenEmailThreadWasClosed !== thread.id);
 
         if (canOpen) {
-          openEmailThread(thread.id);
+          openRecordInCommandMenu({
+            recordId: thread.id,
+            objectNameSingular: CoreObjectNameSingular.MessageThread,
+            page: CommandMenuPages.ViewEmailThread,
+          });
         }
       },
     [
       isSameEventThanRightDrawerClose,
-      openEmailThread,
+      openRecordInCommandMenu,
       thread.id,
       thread.visibility,
     ],
