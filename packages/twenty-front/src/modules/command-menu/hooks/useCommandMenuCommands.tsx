@@ -8,7 +8,7 @@ import { copilotQueryState } from '@/activities/copilot/right-drawer/states/copi
 import { Note } from '@/activities/types/Note';
 import { Task } from '@/activities/types/Task';
 import { COMMAND_MENU_NAVIGATE_COMMANDS } from '@/command-menu/constants/CommandMenuNavigateCommands';
-import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
 import { commandMenuSearchState } from '@/command-menu/states/commandMenuSearchState';
 import { isCommandMenuOpenedState } from '@/command-menu/states/isCommandMenuOpenedState';
 import {
@@ -38,7 +38,7 @@ export const useCommandMenuCommands = () => {
   const actionMenuEntries = useRecoilComponentValueV2(
     actionMenuEntriesComponentSelector,
   );
-  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { openRecordInCommandMenu } = useCommandMenu();
 
   const isCommandMenuOpened = useRecoilValue(isCommandMenuOpenedState);
   const commandMenuSearch = useRecoilValue(commandMenuSearchState);
@@ -238,7 +238,10 @@ export const useCommandMenuCommands = () => {
         label: note.title ?? '',
         to: '',
         onCommandClick: () =>
-          openRecordInCommandMenu(note.id, CoreObjectNameSingular.Note),
+          openRecordInCommandMenu({
+            recordId: note.id,
+            objectNameSingular: CoreObjectNameSingular.Note,
+          }),
         shouldCloseCommandMenuOnClick: true,
         Icon: IconNotes,
       })),
@@ -252,7 +255,10 @@ export const useCommandMenuCommands = () => {
         label: task.title ?? '',
         to: '',
         onCommandClick: () =>
-          openRecordInCommandMenu(task.id, CoreObjectNameSingular.Task),
+          openRecordInCommandMenu({
+            recordId: task.id,
+            objectNameSingular: CoreObjectNameSingular.Task,
+          }),
         shouldCloseCommandMenuOnClick: true,
         Icon: IconCheckbox,
       })),

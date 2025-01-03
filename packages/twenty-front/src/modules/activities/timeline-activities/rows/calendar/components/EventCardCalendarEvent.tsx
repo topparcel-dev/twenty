@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 import { isUndefined } from '@sniptt/guards';
 
-import { useOpenCalendarEventRightDrawer } from '@/activities/calendar/right-drawer/hooks/useOpenCalendarEventRightDrawer';
 import { CalendarEvent } from '@/activities/calendar/types/CalendarEvent';
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
+import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useFindOneRecord } from '@/object-record/hooks/useFindOneRecord';
 import { useUpsertRecordsInStore } from '@/object-record/record-store/hooks/useUpsertRecordsInStore';
@@ -107,7 +108,7 @@ export const EventCardCalendarEvent = ({
     },
   });
 
-  const { openCalendarEventRightDrawer } = useOpenCalendarEventRightDrawer();
+  const { openRecordInCommandMenu } = useCommandMenu();
 
   const { timeZone } = useContext(UserContext);
 
@@ -153,7 +154,13 @@ export const EventCardCalendarEvent = ({
 
   return (
     <StyledEventCardCalendarEventContainer
-      onClick={() => openCalendarEventRightDrawer(calendarEvent.id)}
+      onClick={() =>
+        openRecordInCommandMenu({
+          recordId: calendarEvent.id,
+          objectNameSingular: CoreObjectNameSingular.CalendarEvent,
+          page: CommandMenuPages.ViewCalendarEvent,
+        })
+      }
     >
       <StyledCalendarEventDateCard>
         <StyledCalendarEventDateCardMonth>

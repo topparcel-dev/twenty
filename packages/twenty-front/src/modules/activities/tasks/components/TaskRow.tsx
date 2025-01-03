@@ -13,7 +13,7 @@ import { beautifyExactDate, hasDatePassed } from '~/utils/date-utils';
 
 import { ActivityRow } from '@/activities/components/ActivityRow';
 import { Task } from '@/activities/types/Task';
-import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useFieldContext } from '@/object-record/hooks/useFieldContext';
 import { useCompleteTask } from '../hooks/useCompleteTask';
@@ -78,7 +78,7 @@ const StyledCheckboxContainer = styled.div`
 
 export const TaskRow = ({ task }: { task: Task }) => {
   const theme = useTheme();
-  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { openRecordInCommandMenu } = useCommandMenu();
 
   const body = getActivitySummary(task.body);
   const { completeTask } = useCompleteTask(task);
@@ -93,7 +93,10 @@ export const TaskRow = ({ task }: { task: Task }) => {
   return (
     <ActivityRow
       onClick={() => {
-        openRecordInCommandMenu(task.id, CoreObjectNameSingular.Task);
+        openRecordInCommandMenu({
+          recordId: task.id,
+          objectNameSingular: CoreObjectNameSingular.Task,
+        });
       }}
     >
       <StyledLeftSideContainer>

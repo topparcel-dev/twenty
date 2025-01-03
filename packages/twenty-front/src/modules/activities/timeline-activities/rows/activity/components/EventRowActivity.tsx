@@ -5,7 +5,7 @@ import {
   StyledEventRowItemAction,
   StyledEventRowItemColumn,
 } from '@/activities/timeline-activities/rows/components/EventRowDynamicComponent';
-import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useGetRecordFromCache } from '@/object-record/cache/hooks/useGetRecordFromCache';
 import { isNonEmptyString } from '@sniptt/guards';
@@ -55,7 +55,7 @@ export const EventRowActivity = ({
       ? event.linkedRecordCachedName
       : 'Untitled';
 
-  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { openRecordInCommandMenu } = useCommandMenu();
 
   return (
     <>
@@ -65,7 +65,10 @@ export const EventRowActivity = ({
       </StyledEventRowItemAction>
       <StyledLinkedActivity
         onClick={() =>
-          openRecordInCommandMenu(event.linkedRecordId, objectNameSingular)
+          openRecordInCommandMenu({
+            recordId: event.linkedRecordId,
+            objectNameSingular,
+          })
         }
       >
         {activityTitle}

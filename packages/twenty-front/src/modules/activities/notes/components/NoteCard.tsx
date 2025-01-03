@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ActivityTargetsInlineCell } from '@/activities/inline-cell/components/ActivityTargetsInlineCell';
 import { Note } from '@/activities/types/Note';
 import { getActivityPreview } from '@/activities/utils/getActivityPreview';
-import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useFieldContext } from '@/object-record/hooks/useFieldContext';
 
@@ -68,7 +68,7 @@ export const NoteCard = ({
   note: Note;
   isSingleNote: boolean;
 }) => {
-  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { openRecordInCommandMenu } = useCommandMenu();
 
   const body = getActivityPreview(note.body);
 
@@ -83,7 +83,10 @@ export const NoteCard = ({
     <StyledCard isSingleNote={isSingleNote}>
       <StyledCardDetailsContainer
         onClick={() =>
-          openRecordInCommandMenu(note.id, CoreObjectNameSingular.Note)
+          openRecordInCommandMenu({
+            recordId: note.id,
+            objectNameSingular: CoreObjectNameSingular.Note,
+          })
         }
       >
         <StyledNoteTitle>{note.title ?? 'Task Title'}</StyledNoteTitle>

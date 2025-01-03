@@ -12,6 +12,7 @@ import { isDefined } from '~/utils/isDefined';
 import { actionMenuEntriesComponentState } from '@/action-menu/states/actionMenuEntriesComponentState';
 import { commandMenuPageState } from '@/command-menu/states/commandMenuPageState';
 import { viewableRecordIdState } from '@/command-menu/states/viewableRecordIdState';
+import { viewableRecordNameSingularState } from '@/command-menu/states/viewableRecordNameSingularState';
 import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 import { contextStoreCurrentObjectMetadataIdComponentState } from '@/context-store/states/contextStoreCurrentObjectMetadataIdComponentState';
 import { contextStoreCurrentViewIdComponentState } from '@/context-store/states/contextStoreCurrentViewIdComponentState';
@@ -37,7 +38,7 @@ export const useCommandMenu = () => {
 
   const openCommandMenu = useRecoilCallback(
     ({ snapshot, set }) =>
-      () => {
+      (page: CommandMenuPages = CommandMenuPages.Root) => {
         if (isDefined(mainContextStoreComponentInstanceId)) {
           const contextStoreCurrentObjectMetadataId = snapshot
             .getLoadable(
@@ -147,6 +148,7 @@ export const useCommandMenu = () => {
 
         setIsCommandMenuOpened(true);
         setHotkeyScopeAndMemorizePreviousScope(AppHotkeyScope.CommandMenuOpen);
+        set(commandMenuPageState, page);
       },
     [
       mainContextStoreComponentInstanceId,
@@ -272,10 +274,29 @@ export const useCommandMenu = () => {
     [navigate, toggleCommandMenu],
   );
 
+  const openRecordInCommandMenu = useRecoilCallback(
+    ({ set }) =>
+      ({
+        recordId,
+        objectNameSingular,
+        page = CommandMenuPages.ViewRecord,
+      }: {
+        recordId: string;
+        objectNameSingular: string;
+        page?: CommandMenuPages;
+      }) => {
+        set(viewableRecordIdState, recordId);
+        set(viewableRecordNameSingularState, objectNameSingular);
+        openCommandMenu(page);
+      },
+    [openCommandMenu],
+  );
+
   return {
     openCommandMenu,
     closeCommandMenu,
     toggleCommandMenu,
     onItemClick,
+    openRecordInCommandMenu,
   };
 };

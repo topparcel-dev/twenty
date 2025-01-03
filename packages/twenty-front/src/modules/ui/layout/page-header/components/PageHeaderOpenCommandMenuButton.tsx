@@ -24,7 +24,7 @@ export const PageHeaderOpenCommandMenuButton = () => {
           accent="default"
           shortcut={isMobile ? '' : '⌘K'}
           ariaLabel="Open command menu"
-          onClick={openCommandMenu}
+          onClick={() => openCommandMenu()}
         />
       ) : (
         <IconButton
@@ -33,7 +33,7 @@ export const PageHeaderOpenCommandMenuButton = () => {
           dataTestId="more-showpage-button"
           accent="default"
           variant="secondary"
-          onClick={openCommandMenu}
+          onClick={() => openCommandMenu()}
         />
       )}
     </>
