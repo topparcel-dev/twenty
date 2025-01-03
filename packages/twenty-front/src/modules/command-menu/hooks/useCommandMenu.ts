@@ -10,9 +10,9 @@ import { AppHotkeyScope } from '@/ui/utilities/hotkey/types/AppHotkeyScope';
 import { isDefined } from '~/utils/isDefined';
 
 import { actionMenuEntriesComponentState } from '@/action-menu/states/actionMenuEntriesComponentState';
-import { CommandMenuPages } from '@/command-menu/components/CommandMenuPages';
 import { commandMenuPageState } from '@/command-menu/states/commandMenuPageState';
 import { commandMenuViewableRecordIdState } from '@/command-menu/states/commandMenuViewableRecordIdState';
+import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 import { contextStoreCurrentObjectMetadataIdComponentState } from '@/context-store/states/contextStoreCurrentObjectMetadataIdComponentState';
 import { contextStoreCurrentViewIdComponentState } from '@/context-store/states/contextStoreCurrentViewIdComponentState';
 import { contextStoreCurrentViewTypeComponentState } from '@/context-store/states/contextStoreCurrentViewTypeComponentState';

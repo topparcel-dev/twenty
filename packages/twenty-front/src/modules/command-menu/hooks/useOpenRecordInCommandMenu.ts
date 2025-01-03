@@ -1,7 +1,8 @@
-import { CommandMenuPages } from '@/command-menu/components/CommandMenuPages';
 import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
 import { commandMenuPageState } from '@/command-menu/states/commandMenuPageState';
 import { commandMenuViewableRecordIdState } from '@/command-menu/states/commandMenuViewableRecordIdState';
+import { commandMenuViewableRecordNameSingularState } from '@/command-menu/states/commandMenuviewableRecordNameSingularState';
+import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 import { useRecoilCallback } from 'recoil';
 
 export const useOpenRecordInCommandMenu = () => {
@@ -9,10 +10,11 @@ export const useOpenRecordInCommandMenu = () => {
 
   const openRecordInCommandMenu = useRecoilCallback(
     ({ set }) => {
-      return (recordId: string) => {
-        openCommandMenu();
+      return (recordId: string, objectNameSingular: string) => {
         set(commandMenuPageState, CommandMenuPages.ViewRecord);
         set(commandMenuViewableRecordIdState, recordId);
+        set(commandMenuViewableRecordNameSingularState, objectNameSingular);
+        openCommandMenu();
       };
     },
     [openCommandMenu],

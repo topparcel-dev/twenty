@@ -7,13 +7,13 @@ import {
   OverflowingTextWithTooltip,
 } from 'twenty-ui';
 
-import { useOpenActivityRightDrawer } from '@/activities/hooks/useOpenActivityRightDrawer';
 import { ActivityTargetsInlineCell } from '@/activities/inline-cell/components/ActivityTargetsInlineCell';
 import { getActivitySummary } from '@/activities/utils/getActivitySummary';
 import { beautifyExactDate, hasDatePassed } from '~/utils/date-utils';
 
 import { ActivityRow } from '@/activities/components/ActivityRow';
 import { Task } from '@/activities/types/Task';
+import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useFieldContext } from '@/object-record/hooks/useFieldContext';
 import { useCompleteTask } from '../hooks/useCompleteTask';
@@ -78,9 +78,7 @@ const StyledCheckboxContainer = styled.div`
 
 export const TaskRow = ({ task }: { task: Task }) => {
   const theme = useTheme();
-  const openActivityRightDrawer = useOpenActivityRightDrawer({
-    objectNameSingular: CoreObjectNameSingular.Task,
-  });
+  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
 
   const body = getActivitySummary(task.body);
   const { completeTask } = useCompleteTask(task);
@@ -95,7 +93,7 @@ export const TaskRow = ({ task }: { task: Task }) => {
   return (
     <ActivityRow
       onClick={() => {
-        openActivityRightDrawer(task.id);
+        openRecordInCommandMenu(task.id, CoreObjectNameSingular.Task);
       }}
     >
       <StyledLeftSideContainer>

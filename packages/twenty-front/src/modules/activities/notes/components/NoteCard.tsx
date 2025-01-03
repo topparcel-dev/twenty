@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import { useOpenActivityRightDrawer } from '@/activities/hooks/useOpenActivityRightDrawer';
 import { ActivityTargetsInlineCell } from '@/activities/inline-cell/components/ActivityTargetsInlineCell';
 import { Note } from '@/activities/types/Note';
 import { getActivityPreview } from '@/activities/utils/getActivityPreview';
+import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useFieldContext } from '@/object-record/hooks/useFieldContext';
 
@@ -68,9 +68,8 @@ export const NoteCard = ({
   note: Note;
   isSingleNote: boolean;
 }) => {
-  const openActivityRightDrawer = useOpenActivityRightDrawer({
-    objectNameSingular: CoreObjectNameSingular.Note,
-  });
+  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+
   const body = getActivityPreview(note.body);
 
   const { FieldContextProvider: NoteTargetsContextProvider } = useFieldContext({
@@ -83,7 +82,9 @@ export const NoteCard = ({
   return (
     <StyledCard isSingleNote={isSingleNote}>
       <StyledCardDetailsContainer
-        onClick={() => openActivityRightDrawer(note.id)}
+        onClick={() =>
+          openRecordInCommandMenu(note.id, CoreObjectNameSingular.Note)
+        }
       >
         <StyledNoteTitle>{note.title ?? 'Task Title'}</StyledNoteTitle>
         <StyledCardContent>{body}</StyledCardContent>

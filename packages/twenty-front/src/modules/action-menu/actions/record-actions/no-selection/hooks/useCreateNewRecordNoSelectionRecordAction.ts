@@ -15,7 +15,7 @@ export const useCreateNewRecordNoSelectionRecordAction: ActionHookWithObjectMeta
       const newRecordId = v4();
       await createOneRecord({ id: newRecordId });
 
-      openRecordInCommandMenu(newRecordId);
+      openRecordInCommandMenu(newRecordId, objectMetadataItem.nameSingular);
     };
 
     return {

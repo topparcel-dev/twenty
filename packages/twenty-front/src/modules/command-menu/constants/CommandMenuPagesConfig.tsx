@@ -1,6 +1,6 @@
 import { CommandMenu } from '@/command-menu/components/CommandMenu';
-import { CommandMenuPages } from '@/command-menu/components/CommandMenuPages';
 import { CommandMenuShowPage } from '@/command-menu/components/CommandMenuShowPage';
+import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 
 export const COMMAND_MENU_PAGES_CONFIG = new Map<
   CommandMenuPages,

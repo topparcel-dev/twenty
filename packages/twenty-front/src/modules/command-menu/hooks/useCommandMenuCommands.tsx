@@ -5,10 +5,10 @@ import {
 } from '@/action-menu/types/ActionMenuEntry';
 import { useOpenCopilotRightDrawer } from '@/activities/copilot/right-drawer/hooks/useOpenCopilotRightDrawer';
 import { copilotQueryState } from '@/activities/copilot/right-drawer/states/copilotQueryState';
-import { useOpenActivityRightDrawer } from '@/activities/hooks/useOpenActivityRightDrawer';
 import { Note } from '@/activities/types/Note';
 import { Task } from '@/activities/types/Task';
 import { COMMAND_MENU_NAVIGATE_COMMANDS } from '@/command-menu/constants/CommandMenuNavigateCommands';
+import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { commandMenuSearchState } from '@/command-menu/states/commandMenuSearchState';
 import { isCommandMenuOpenedState } from '@/command-menu/states/isCommandMenuOpenedState';
 import {
@@ -38,9 +38,8 @@ export const useCommandMenuCommands = () => {
   const actionMenuEntries = useRecoilComponentValueV2(
     actionMenuEntriesComponentSelector,
   );
-  const openActivityRightDrawer = useOpenActivityRightDrawer({
-    objectNameSingular: CoreObjectNameSingular.Note,
-  });
+  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+
   const isCommandMenuOpened = useRecoilValue(isCommandMenuOpenedState);
   const commandMenuSearch = useRecoilValue(commandMenuSearchState);
   const [deferredCommandMenuSearch] = useDebounce(commandMenuSearch, 300); // 200ms - 500ms
@@ -238,11 +237,12 @@ export const useCommandMenuCommands = () => {
         id: note.id,
         label: note.title ?? '',
         to: '',
-        onCommandClick: () => openActivityRightDrawer(note.id),
+        onCommandClick: () =>
+          openRecordInCommandMenu(note.id, CoreObjectNameSingular.Note),
         shouldCloseCommandMenuOnClick: true,
         Icon: IconNotes,
       })),
-    [notes, openActivityRightDrawer],
+    [notes, openRecordInCommandMenu],
   );
 
   const tasksCommands = useMemo(
@@ -251,11 +251,12 @@ export const useCommandMenuCommands = () => {
         id: task.id,
         label: task.title ?? '',
         to: '',
-        onCommandClick: () => openActivityRightDrawer(task.id),
+        onCommandClick: () =>
+          openRecordInCommandMenu(task.id, CoreObjectNameSingular.Task),
         shouldCloseCommandMenuOnClick: true,
         Icon: IconCheckbox,
       })),
-    [tasks, openActivityRightDrawer],
+    [tasks, openRecordInCommandMenu],
   );
 
   const customObjectRecordsMap = useMemo(() => {

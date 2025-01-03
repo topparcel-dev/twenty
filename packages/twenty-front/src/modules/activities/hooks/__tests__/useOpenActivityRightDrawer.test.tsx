@@ -3,7 +3,7 @@ import { act, renderHook } from '@testing-library/react';
 import { ReactNode } from 'react';
 import { RecoilRoot, useRecoilValue } from 'recoil';
 
-import { useOpenActivityRightDrawer } from '@/activities/hooks/useOpenActivityRightDrawer';
+import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
 
@@ -17,12 +17,11 @@ describe('useOpenActivityRightDrawer', () => {
   it('works as expected', () => {
     const { result } = renderHook(
       () => {
-        const openActivityRightDrawer = useOpenActivityRightDrawer({
-          objectNameSingular: CoreObjectNameSingular.Task,
-        });
+        const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+
         const viewableRecordId = useRecoilValue(viewableRecordIdState);
         return {
-          openActivityRightDrawer,
+          openRecordInCommandMenu,
           viewableRecordId,
         };
       },
@@ -33,7 +32,10 @@ describe('useOpenActivityRightDrawer', () => {
 
     expect(result.current.viewableRecordId).toBeNull();
     act(() => {
-      result.current.openActivityRightDrawer('123');
+      result.current.openRecordInCommandMenu(
+        '123',
+        CoreObjectNameSingular.Task,
+      );
     });
     expect(result.current.viewableRecordId).toBe('123');
   });
