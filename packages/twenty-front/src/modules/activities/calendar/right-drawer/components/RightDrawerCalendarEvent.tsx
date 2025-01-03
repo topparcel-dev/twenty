@@ -5,7 +5,7 @@ import { CalendarEventDetailsEffect } from '@/activities/calendar/components/Cal
 import { FIND_ONE_CALENDAR_EVENT_OPERATION_SIGNATURE } from '@/activities/calendar/graphql/operation-signatures/FindOneCalendarEventOperationSignature';
 import { CalendarEvent } from '@/activities/calendar/types/CalendarEvent';
 import { useFindOneRecord } from '@/object-record/hooks/useFindOneRecord';
-import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
+import { viewableRecordIdState } from '@/command-menu/states/viewableRecordIdState';
 import { RecordValueSetterEffect } from '@/object-record/record-store/components/RecordValueSetterEffect';
 import { useUpsertRecordsInStore } from '@/object-record/record-store/hooks/useUpsertRecordsInStore';
 

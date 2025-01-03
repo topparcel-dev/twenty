@@ -5,7 +5,7 @@ import { RecoilRoot, useRecoilValue } from 'recoil';
 
 import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
-import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
+import { viewableRecordIdState } from '@/command-menu/states/viewableRecordIdState';
 
 const Wrapper = ({ children }: { children: ReactNode }) => (
   <RecoilRoot>

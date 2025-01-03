@@ -1,4 +1,11 @@
 export enum CommandMenuPages {
-  Root = 'root',
-  ViewRecord = 'view-record',
+  Root = 'Root',
+  ViewRecord = 'ViewRecord',
+  ViewEmailThread = 'ViewEmailThread',
+  ViewCalendarEvent = 'ViewCalendarEvent',
+  Copilot = 'Copilot',
+  WorkflowStepSelectTriggerType = 'WorkflowStepSelectTriggerType',
+  WorkflowStepSelectAction = 'WorkflowStepSelectAction',
+  WorkflowStepEdit = 'WorkflowStepEdit',
+  WorkflowStepView = 'WorkflowStepView',
 }

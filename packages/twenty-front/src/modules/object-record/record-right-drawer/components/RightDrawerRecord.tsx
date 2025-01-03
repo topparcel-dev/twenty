@@ -1,10 +1,10 @@
 import { useRecoilValue } from 'recoil';
 
 import { ActionMenuComponentInstanceContext } from '@/action-menu/states/contexts/ActionMenuComponentInstanceContext';
+import { isNewViewableRecordLoadingState } from '@/command-menu/states/isNewViewableRecordLoading';
+import { viewableRecordIdState } from '@/command-menu/states/viewableRecordIdState';
+import { viewableRecordNameSingularState } from '@/command-menu/states/viewableRecordNameSingularState';
 import { ContextStoreComponentInstanceContext } from '@/context-store/states/contexts/ContextStoreComponentInstanceContext';
-import { isNewViewableRecordLoadingState } from '@/object-record/record-right-drawer/states/isNewViewableRecordLoading';
-import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
-import { viewableRecordNameSingularState } from '@/object-record/record-right-drawer/states/viewableRecordNameSingularState';
 import { RecordShowContainer } from '@/object-record/record-show/components/RecordShowContainer';
 import { useRecordShowPage } from '@/object-record/record-show/hooks/useRecordShowPage';
 import { RecordValueSetterEffect } from '@/object-record/record-store/components/RecordValueSetterEffect';

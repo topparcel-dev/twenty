@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react';
 import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
 
 import { useEmailThread } from '@/activities/emails/hooks/useEmailThread';
-import { viewableRecordIdState } from '@/object-record/record-right-drawer/states/viewableRecordIdState';
+import { viewableRecordIdState } from '@/command-menu/states/viewableRecordIdState';
 import { isRightDrawerOpenState } from '@/ui/layout/right-drawer/states/isRightDrawerOpenState';
 
 const viewableEmailThreadId = '1234';

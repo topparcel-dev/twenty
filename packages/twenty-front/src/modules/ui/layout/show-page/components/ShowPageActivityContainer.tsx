@@ -1,7 +1,7 @@
 import { ActivityRichTextEditor } from '@/activities/components/ActivityRichTextEditor';
 import { ActivityTargetableObject } from '@/activities/types/ActivityTargetableEntity';
+import { isNewViewableRecordLoadingState } from '@/command-menu/states/isNewViewableRecordLoading';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
-import { isNewViewableRecordLoadingState } from '@/object-record/record-right-drawer/states/isNewViewableRecordLoading';
 import { ScrollWrapper } from '@/ui/utilities/scroll/components/ScrollWrapper';
 import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';

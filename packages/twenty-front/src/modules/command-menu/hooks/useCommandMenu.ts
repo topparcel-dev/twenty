@@ -11,7 +11,7 @@ import { isDefined } from '~/utils/isDefined';
 
 import { actionMenuEntriesComponentState } from '@/action-menu/states/actionMenuEntriesComponentState';
 import { commandMenuPageState } from '@/command-menu/states/commandMenuPageState';
-import { commandMenuViewableRecordIdState } from '@/command-menu/states/commandMenuViewableRecordIdState';
+import { viewableRecordIdState } from '@/command-menu/states/viewableRecordIdState';
 import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 import { contextStoreCurrentObjectMetadataIdComponentState } from '@/context-store/states/contextStoreCurrentObjectMetadataIdComponentState';
 import { contextStoreCurrentViewIdComponentState } from '@/context-store/states/contextStoreCurrentViewIdComponentState';
@@ -215,7 +215,7 @@ export const useCommandMenu = () => {
         );
 
         if (isCommandMenuOpened) {
-          set(commandMenuViewableRecordIdState, null);
+          set(viewableRecordIdState, null);
           set(commandMenuPageState, CommandMenuPages.Root);
           setIsCommandMenuOpened(false);
           resetSelectedItem();
