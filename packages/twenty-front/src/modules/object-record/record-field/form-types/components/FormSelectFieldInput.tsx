@@ -28,6 +28,7 @@ type FormSelectFieldInputProps = {
   options: SelectOption[];
   clearLabel?: string;
   readonly?: boolean;
+  placeholder?: string;
 };
 
 const StyledDisplayModeReadonlyContainer = styled.div`
@@ -38,7 +39,6 @@ const StyledDisplayModeReadonlyContainer = styled.div`
   font-family: inherit;
   padding-inline: ${({ theme }) => theme.spacing(2)};
   width: 100%;
-  justify-content: space-between;
 `;
 
 const StyledDisplayModeContainer = styled(StyledDisplayModeReadonlyContainer)`
@@ -48,7 +48,12 @@ const StyledDisplayModeContainer = styled(StyledDisplayModeReadonlyContainer)`
   &[data-open='true'] {
     background-color: ${({ theme }) => theme.background.transparent.lighter};
   }
-  justify-content: space-between;
+`;
+
+const StyledPlaceholder = styled.div`
+  color: ${({ theme }) => theme.font.color.light};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  width: 100%;
 `;
 
 const StyledSelectInputContainer = styled.div`
@@ -65,6 +70,7 @@ export const FormSelectFieldInput = ({
   options,
   clearLabel,
   readonly,
+  placeholder,
 }: FormSelectFieldInputProps) => {
   const inputId = useId();
 
@@ -213,6 +219,8 @@ export const FormSelectFieldInput = ({
     ...filteredOptions.map((option) => option.value),
   ];
 
+  const placeholderText = placeholder ?? `Select ${label}`;
+
   return (
     <FormFieldInputContainer>
       {label ? <InputLabel>{label}</InputLabel> : null}
@@ -224,16 +232,18 @@ export const FormSelectFieldInput = ({
           {draftValue.type === 'static' ? (
             readonly ? (
               <StyledDisplayModeReadonlyContainer>
-                {isDefined(selectedOption) && (
+                {isDefined(selectedOption) ? (
                   <SelectDisplay
                     color={selectedOption.color ?? 'transparent'}
                     label={selectedOption.label}
                     Icon={selectedOption.icon ?? undefined}
                   />
+                ) : (
+                  <StyledPlaceholder />
                 )}
                 <IconChevronDown
                   size={theme.icon.size.md}
-                  color={theme.font.color.tertiary}
+                  color={theme.font.color.light}
                 />
               </StyledDisplayModeReadonlyContainer>
             ) : (
@@ -243,12 +253,14 @@ export const FormSelectFieldInput = ({
               >
                 <VisibilityHidden>Edit</VisibilityHidden>
 
-                {isDefined(selectedOption) && (
+                {isDefined(selectedOption) ? (
                   <SelectDisplay
                     color={selectedOption.color ?? 'transparent'}
                     label={selectedOption.label}
                     Icon={selectedOption.icon ?? undefined}
                   />
+                ) : (
+                  <StyledPlaceholder>{placeholderText}</StyledPlaceholder>
                 )}
                 <IconChevronDown
                   size={theme.icon.size.md}
