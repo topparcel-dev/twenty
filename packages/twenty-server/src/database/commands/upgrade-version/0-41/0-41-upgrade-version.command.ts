@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 
 import { ActiveWorkspacesCommandRunner } from 'src/database/commands/active-workspaces.command';
 import { BaseCommandOptions } from 'src/database/commands/base.command';
-import { CreateManyToOneRelationsCommand } from 'src/database/commands/upgrade-version/0-41/0-41-create-many-to-one-relations.command';
+import { MigrateRelationsToFieldMetadataCommand } from 'src/database/commands/upgrade-version/0-41/0-41-migrate-relations-to-field-metadata.command';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
 
 @Command({
@@ -16,7 +16,7 @@ export class UpgradeTo0_41Command extends ActiveWorkspacesCommandRunner {
   constructor(
     @InjectRepository(Workspace, 'core')
     protected readonly workspaceRepository: Repository<Workspace>,
-    private readonly createManyToOneRelations: CreateManyToOneRelationsCommand,
+    private readonly migrateRelationsToFieldMetadata: MigrateRelationsToFieldMetadataCommand,
   ) {
     super(workspaceRepository);
   }
@@ -28,7 +28,7 @@ export class UpgradeTo0_41Command extends ActiveWorkspacesCommandRunner {
   ): Promise<void> {
     this.logger.log('Running command to upgrade to 0.41');
 
-    await this.createManyToOneRelations.executeActiveWorkspacesCommand(
+    await this.migrateRelationsToFieldMetadata.executeActiveWorkspacesCommand(
       passedParam,
       options,
       workspaceIds,
