@@ -14,6 +14,10 @@ import {
 import { isCommandLogger } from 'src/database/commands/logger';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
 import { FieldMetadataEntity } from 'src/engine/metadata-modules/field-metadata/field-metadata.entity';
+import {
+  deduceRelationDirection,
+  RelationDirection,
+} from 'src/engine/utils/deduce-relation-direction.util';
 
 @Command({
   name: 'upgrade-0.41:migrate-relations-to-field-metadata',
@@ -102,11 +106,21 @@ export class MigrateRelationsToFieldMetadataCommand extends ActiveWorkspacesComm
     const relationMetadata =
       fieldMetadata.fromRelationMetadata ?? fieldMetadata.toRelationMetadata;
 
-    const relationDirection =
-      relationMetadata.fromFieldMetadataId === fieldMetadata.id ? 'to' : 'from';
+    const relationDirection = deduceRelationDirection(
+      fieldMetadata,
+      relationMetadata,
+    );
+    let relationType = relationMetadata.relationType as unknown as RelationType;
+
+    if (
+      relationDirection === RelationDirection.TO &&
+      relationType === RelationType.ONE_TO_MANY
+    ) {
+      relationType = RelationType.MANY_TO_ONE;
+    }
 
     const targetFieldMetadataId =
-      relationDirection === 'to'
+      relationDirection === RelationDirection.FROM
         ? relationMetadata.toFieldMetadataId
         : relationMetadata.fromFieldMetadataId;
 
@@ -114,7 +128,7 @@ export class MigrateRelationsToFieldMetadataCommand extends ActiveWorkspacesComm
       ...fieldMetadata,
       settings: {
         ...fieldMetadata.settings,
-        relationType: relationMetadata.relationType as unknown as RelationType,
+        relationType,
         onDelete: relationMetadata.onDeleteAction,
       },
       targetFieldMetadataId,

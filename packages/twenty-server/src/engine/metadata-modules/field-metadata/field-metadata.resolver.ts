@@ -144,6 +144,14 @@ export class FieldMetadataResolver {
       throw new BadRequestException('Target field metadata id is required');
     }
 
+    const sourceFieldMetadata =
+      await this.fieldMetadataService.findOneWithinWorkspace(workspace.id, {
+        where: {
+          id: fieldMetadata.id,
+        },
+        relations: ['object'],
+      });
+
     const targetFieldMetadata =
       await this.fieldMetadataService.findOneWithinWorkspace(workspace.id, {
         where: {
@@ -162,7 +170,7 @@ export class FieldMetadataResolver {
 
     return {
       type: fieldMetadata.settings.relationType,
-      sourceObjectMetadata: fieldMetadata.object,
+      sourceObjectMetadata: sourceFieldMetadata.object,
       targetObjectMetadata: targetFieldMetadata.object,
       sourceFieldMetadata: fieldMetadata,
       targetFieldMetadata: targetFieldMetadata,
