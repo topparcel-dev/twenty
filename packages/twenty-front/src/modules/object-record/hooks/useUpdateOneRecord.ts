@@ -12,6 +12,7 @@ import { useUpdateOneRecordMutation } from '@/object-record/hooks/useUpdateOneRe
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { getUpdateOneRecordMutationResponseField } from '@/object-record/utils/getUpdateOneRecordMutationResponseField';
 import { sanitizeRecordInput } from '@/object-record/utils/sanitizeRecordInput';
+import { cloneDeep } from '@apollo/client/utilities';
 import { capitalize } from 'twenty-shared';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 
@@ -76,6 +77,8 @@ export const useUpdateOneRecord = <
       computeReferences: true,
     });
 
+    console.log({cachedRecord: cloneDeep(cachedRecord) })
+    console.log(JSON.stringify(cachedRecord))
     const computedOptimisticRecord = {
       ...cachedRecord,
       ...(optimisticRecord ?? sanitizedInput),
@@ -96,6 +99,7 @@ export const useUpdateOneRecord = <
       return null;
     }
 
+    console.log({computedOptimisticRecord})
     updateRecordFromCache({
       objectMetadataItems,
       objectMetadataItem,
@@ -125,7 +129,8 @@ export const useUpdateOneRecord = <
           const record = data?.[mutationResponseField];
 
           if (!record || !cachedRecord) return;
-
+          console.log({cachedRecord});
+          // Here is provided as an array the cachedRecord
           triggerUpdateRecordOptimisticEffect({
             cache,
             objectMetadataItem,

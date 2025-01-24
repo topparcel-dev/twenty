@@ -27,6 +27,7 @@ export const triggerUpdateRelationsOptimisticEffect = ({
   updatedSourceRecord: ObjectRecord | null;
   objectMetadataItems: ObjectMetadataItem[];
 }) => {
+  console.log('trigger udpate', { currentSourceRecord, updatedSourceRecord });
   return sourceObjectMetadataItem.fields.forEach(
     (fieldMetadataItemOnSourceRecord) => {
       const notARelationField =
@@ -89,6 +90,12 @@ export const triggerUpdateRelationsOptimisticEffect = ({
           targetObjectMetadata.nameSingular,
           currentFieldValueOnSourceRecord,
         );
+      console.log({
+        currentFieldValueOnSourceRecordIsARecordConnection,
+        relationDefinition,
+        currentFieldValueOnSourceRecord,
+        updatedFieldValueOnSourceRecord,
+      });
 
       const targetRecordsToDetachFrom =
         currentFieldValueOnSourceRecordIsARecordConnection
