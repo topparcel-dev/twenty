@@ -10,8 +10,10 @@ import { generateDepthOneRecordGqlFields } from '@/object-record/graphql/utils/g
 import { useRefetchAggregateQueries } from '@/object-record/hooks/useRefetchAggregateQueries';
 import { useUpdateOneRecordMutation } from '@/object-record/hooks/useUpdateOneRecordMutation';
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
+import { computeOptimisticRecordFromInput } from '@/object-record/utils/computeOptimisticRecordFromInput';
 import { getUpdateOneRecordMutationResponseField } from '@/object-record/utils/getUpdateOneRecordMutationResponseField';
 import { sanitizeRecordInput } from '@/object-record/utils/sanitizeRecordInput';
+import { Error } from '@/spreadsheet-import/steps/components/ValidationStep/types';
 import { capitalize } from 'twenty-shared';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 
@@ -66,6 +68,11 @@ export const useUpdateOneRecord = <
       }),
     };
 
+    const optimisticRecordFromInput = computeOptimisticRecordFromInput({
+      objectMetadataItem,
+      recordInput: updateOneRecordInput,
+    });
+
     const cachedRecord = getRecordFromCache<ObjectRecord>(idToUpdate);
 
     const cachedRecordWithConnection = getRecordNodeFromRecord<ObjectRecord>({
@@ -73,12 +80,12 @@ export const useUpdateOneRecord = <
       objectMetadataItem,
       objectMetadataItems,
       recordGqlFields: computedRecordGqlFields,
-      computeReferences: true,
+      computeReferences: false,
     });
 
     const computedOptimisticRecord = {
       ...cachedRecord,
-      ...(optimisticRecord ?? sanitizedInput),
+      ...(optimisticRecord ?? optimisticRecordFromInput),
       ...{ id: idToUpdate },
       ...{ __typename: capitalize(objectMetadataItem.nameSingular) },
     };
@@ -89,7 +96,7 @@ export const useUpdateOneRecord = <
         objectMetadataItem,
         objectMetadataItems,
         recordGqlFields: computedRecordGqlFields,
-        computeReferences: true,
+        computeReferences: false,
       });
 
     if (!optimisticRecordWithConnection || !cachedRecordWithConnection) {
