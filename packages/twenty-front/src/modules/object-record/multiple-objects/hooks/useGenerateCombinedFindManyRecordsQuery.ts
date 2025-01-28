@@ -69,6 +69,10 @@ export const useGenerateCombinedFindManyRecordsQuery = ({
     },
   );
 
+  console.log({
+    filterPerMetadataItemArray,
+  });
+
   return gql`
     query CombinedFindManyRecords(
       ${filterPerMetadataItemArray}, 

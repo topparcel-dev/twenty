@@ -92,7 +92,7 @@ export const NoteCard = ({
         {NoteTargetsContextProvider && (
           <NoteTargetsContextProvider>
             <ActivityTargetsInlineCell
-              activity={note}
+              activityId={note.id}
               activityObjectNameSingular={CoreObjectNameSingular.Note}
               readonly
             />

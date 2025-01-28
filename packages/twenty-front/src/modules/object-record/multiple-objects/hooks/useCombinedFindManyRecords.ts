@@ -17,10 +17,21 @@ export const useCombinedFindManyRecords = ({
     operationSignatures,
   });
 
+  console.log({
+    findManyQuery,
+  });
+
+  const variables = operationSignatures.map(({ variables }) => variables);
+
+  console.log({
+    variables,
+  });
+
   const { data, loading } = useQuery<MultiObjectRecordQueryResult>(
     findManyQuery ?? EMPTY_QUERY,
     {
       skip,
+      variables,
     },
   );
 

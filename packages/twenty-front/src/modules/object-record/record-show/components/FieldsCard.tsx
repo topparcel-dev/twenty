@@ -1,8 +1,6 @@
 import groupBy from 'lodash.groupby';
 
 import { ActivityTargetsInlineCell } from '@/activities/inline-cell/components/ActivityTargetsInlineCell';
-import { Note } from '@/activities/types/Note';
-import { Task } from '@/activities/types/Task';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { formatFieldMetadataItemAsColumnDefinition } from '@/object-metadata/utils/formatFieldMetadataItemAsColumnDefinition';
 import { FieldContext } from '@/object-record/record-field/contexts/FieldContext';
@@ -121,7 +119,7 @@ export const FieldsCard = ({
                             | CoreObjectNameSingular.Note
                             | CoreObjectNameSingular.Task
                         }
-                        activity={recordFromStore as Task | Note}
+                        activityId={recordFromStore.id}
                         showLabel={true}
                         maxWidth={200}
                       />

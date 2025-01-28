@@ -1,11 +1,11 @@
-import { isNull } from '@sniptt/guards';
+import { isNonEmptyString, isNull } from '@sniptt/guards';
 import { useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil';
 import { v4 } from 'uuid';
 
+import { useActivityTargetObjectRecords } from '@/activities/hooks/useActivityTargetObjectRecords';
 import { useUpsertActivity } from '@/activities/hooks/useUpsertActivity';
 import { ActivityTargetObjectRecordEffect } from '@/activities/inline-cell/components/ActivityTargetObjectRecordEffect';
 import { isActivityInCreateModeState } from '@/activities/states/isActivityInCreateModeState';
-import { ActivityTargetWithTargetRecord } from '@/activities/types/ActivityTargetObject';
 import { Note } from '@/activities/types/Note';
 import { NoteTarget } from '@/activities/types/NoteTarget';
 import { Task } from '@/activities/types/Task';
@@ -17,6 +17,7 @@ import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSi
 import { useCreateManyRecordsInCache } from '@/object-record/cache/hooks/useCreateManyRecordsInCache';
 import { useCreateManyRecords } from '@/object-record/hooks/useCreateManyRecords';
 import { useDeleteManyRecords } from '@/object-record/hooks/useDeleteManyRecords';
+import { useFindOneRecord } from '@/object-record/hooks/useFindOneRecord';
 import { activityTargetObjectRecordFamilyState } from '@/object-record/record-field/states/activityTargetObjectRecordFamilyState';
 import { objectRecordMultiSelectCheckedRecordsIdsComponentState } from '@/object-record/record-field/states/objectRecordMultiSelectCheckedRecordsIdsComponentState';
 import {
@@ -30,24 +31,32 @@ import { ActivityTargetInlineCellEditModeMultiRecordsSearchFilterEffect } from '
 import { MultiRecordSelect } from '@/object-record/relation-picker/components/MultiRecordSelect';
 import { RecordPickerComponentInstanceContext } from '@/object-record/relation-picker/states/contexts/RecordPickerComponentInstanceContext';
 import { prefillRecord } from '@/object-record/utils/prefillRecord';
+import { isDefined } from 'twenty-ui';
 
 type ActivityTargetInlineCellEditModeProps = {
-  activity: Task | Note;
-  activityTargetWithTargetRecords: ActivityTargetWithTargetRecord[];
+  activityId: string;
   activityObjectNameSingular:
     | CoreObjectNameSingular.Note
     | CoreObjectNameSingular.Task;
 };
 
 export const ActivityTargetInlineCellEditMode = ({
-  activity,
-  activityTargetWithTargetRecords,
+  activityId,
   activityObjectNameSingular,
 }: ActivityTargetInlineCellEditModeProps) => {
-  const [isActivityInCreateMode] = useRecoilState(isActivityInCreateModeState);
-  const recordPickerInstanceId = `record-picker-${activity.id}`;
+  const { record: activity } = useFindOneRecord<Note | Task>({
+    objectNameSingular: activityObjectNameSingular,
+    objectRecordId: activityId,
+    skip: !isNonEmptyString(activityId),
+  });
 
-  const selectedTargetObjectIds = activityTargetWithTargetRecords.map(
+  const { activityTargetObjectRecords } =
+    useActivityTargetObjectRecords(activity);
+
+  const [isActivityInCreateMode] = useRecoilState(isActivityInCreateModeState);
+  const recordPickerInstanceId = `record-picker-${activityId}`;
+
+  const selectedTargetObjectIds = activityTargetObjectRecords.map(
     (activityTarget) => ({
       objectNameSingular: activityTarget.targetObjectMetadataItem.nameSingular,
       id: activityTarget.targetObject.id,
@@ -78,7 +87,7 @@ export const ActivityTargetInlineCellEditMode = ({
     });
 
   const setActivityFromStore = useSetRecoilState(
-    recordStoreFamilyState(activity.id),
+    recordStoreFamilyState(activityId),
   );
 
   const { createManyRecordsInCache: createManyActivityTargetsInCache } =
@@ -89,8 +98,8 @@ export const ActivityTargetInlineCellEditMode = ({
   const handleSubmit = useRecoilCallback(
     ({ snapshot }) =>
       async () => {
-        const activityTargetsAfterUpdate =
-          activityTargetWithTargetRecords.filter((activityTarget) => {
+        const activityTargetsAfterUpdate = activityTargetObjectRecords.filter(
+          (activityTarget) => {
             const recordSelectedInMultiSelect = snapshot
               .getLoadable(
                 objectRecordMultiSelectComponentFamilyState({
@@ -103,7 +112,8 @@ export const ActivityTargetInlineCellEditMode = ({
             return recordSelectedInMultiSelect
               ? recordSelectedInMultiSelect.selected
               : true;
-          });
+          },
+        );
         setActivityFromStore((currentActivity) => {
           if (isNull(currentActivity)) {
             return null;
@@ -117,7 +127,7 @@ export const ActivityTargetInlineCellEditMode = ({
         closeEditableField();
       },
     [
-      activityTargetWithTargetRecords,
+      activityTargetObjectRecords,
       closeEditableField,
       recordPickerInstanceId,
       setActivityFromStore,
@@ -127,7 +137,7 @@ export const ActivityTargetInlineCellEditMode = ({
   const handleChange = useRecoilCallback(
     ({ snapshot, set }) =>
       async (recordId: string) => {
-        const existingActivityTargets = activityTargetWithTargetRecords.map(
+        const existingActivityTargets = activityTargetObjectRecords.map(
           (activityTargetObjectRecord) =>
             activityTargetObjectRecord.activityTarget,
         );
@@ -179,7 +189,7 @@ export const ActivityTargetInlineCellEditMode = ({
               id: newActivityTargetId,
               taskId:
                 activityObjectNameSingular === CoreObjectNameSingular.Task
-                  ? activity.id
+                  ? activityId
                   : null,
               task:
                 activityObjectNameSingular === CoreObjectNameSingular.Task
@@ -187,7 +197,7 @@ export const ActivityTargetInlineCellEditMode = ({
                   : null,
               noteId:
                 activityObjectNameSingular === CoreObjectNameSingular.Note
-                  ? activity.id
+                  ? activityId
                   : null,
               note:
                 activityObjectNameSingular === CoreObjectNameSingular.Note
@@ -202,7 +212,7 @@ export const ActivityTargetInlineCellEditMode = ({
 
           activityTargetsAfterUpdate.push(newActivityTarget);
 
-          if (isActivityInCreateMode) {
+          if (isActivityInCreateMode && isDefined(activity)) {
             createManyActivityTargetsInCache([newActivityTarget]);
             upsertActivity({
               activity,
@@ -240,7 +250,7 @@ export const ActivityTargetInlineCellEditMode = ({
             (activityTarget) => activityTarget.id !== activityTargetToDeleteId,
           );
 
-          if (isActivityInCreateMode) {
+          if (isActivityInCreateMode && isDefined(activity)) {
             upsertActivity({
               activity,
               input: {
@@ -262,7 +272,8 @@ export const ActivityTargetInlineCellEditMode = ({
       },
     [
       activity,
-      activityTargetWithTargetRecords,
+      activityId,
+      activityTargetObjectRecords,
       createManyActivityTargets,
       createManyActivityTargetsInCache,
       deleteManyActivityTargets,
@@ -280,7 +291,7 @@ export const ActivityTargetInlineCellEditMode = ({
         value={{ instanceId: recordPickerInstanceId }}
       >
         <ActivityTargetObjectRecordEffect
-          activityTargetWithTargetRecords={activityTargetWithTargetRecords}
+          activityTargetWithTargetRecords={activityTargetObjectRecords}
         />
         <ActivityTargetInlineCellEditModeMultiRecordsEffect
           selectedObjectRecordIds={selectedTargetObjectIds}
