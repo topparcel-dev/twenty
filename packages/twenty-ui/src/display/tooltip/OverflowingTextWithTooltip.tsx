@@ -1,6 +1,5 @@
 import { styled } from '@linaria/react';
 import { useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 
 import { THEME_COMMON } from '@ui/theme';
 
@@ -135,27 +134,24 @@ export const OverflowingTextWithTooltip = ({
           onMouseLeave={handleMouseLeave}
         >
           {text}
+          <div onClick={handleTooltipClick}>
+            <AppTooltip
+              anchorSelect={`#${textElementId}`}
+              offset={5}
+              hidden={!isTitleOverflowing || hideTooltip}
+              noArrow
+              place="bottom"
+              positionStrategy="absolute"
+              delay={TooltipDelay.mediumDelay}
+            >
+              {isTooltipMultiline ? (
+                <Styledpre>{text}</Styledpre>
+              ) : (
+                `${text || ''}`
+              )}
+            </AppTooltip>
+          </div>
         </StyledOverflowingText>
-      )}
-      {createPortal(
-        <div onClick={handleTooltipClick}>
-          <AppTooltip
-            anchorSelect={`#${textElementId}`}
-            offset={5}
-            hidden={!isTitleOverflowing || hideTooltip}
-            noArrow
-            place="bottom"
-            positionStrategy="absolute"
-            delay={TooltipDelay.mediumDelay}
-          >
-            {isTooltipMultiline ? (
-              <Styledpre>{text}</Styledpre>
-            ) : (
-              `${text || ''}`
-            )}
-          </AppTooltip>
-        </div>,
-        document.body,
       )}
     </>
   );
