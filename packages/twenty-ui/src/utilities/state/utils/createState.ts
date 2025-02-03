@@ -1,6 +1,6 @@
 import { atom, AtomEffect } from 'recoil';
 
-export const createState = <ValueType>({
+export default function createState<ValueType>({
   key,
   defaultValue,
   effects,
@@ -8,7 +8,7 @@ export const createState = <ValueType>({
   key: string;
   defaultValue: ValueType;
   effects?: ReadonlyArray<AtomEffect<ValueType>>;
-}) => {
+}) {
   const recoilState = atom<ValueType>({
     key,
     default: defaultValue,
