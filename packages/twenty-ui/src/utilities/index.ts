@@ -12,6 +12,5 @@ export * from './device/getUserDevice';
 export * from './dimensions/components/ComputeNodeDimensions';
 export * from './responsive/hooks/useIsMobile';
 export * from './screen-size/hooks/useScreenSize';
-export * from './state/utils/createState';
 export * from './types/Nullable';
 export * from './utils/getDisplayValueByUrlType';
