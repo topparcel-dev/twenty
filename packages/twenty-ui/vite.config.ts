@@ -60,6 +60,7 @@ export default defineConfig(({ command }) => {
     // Configuration for building your library.
     // See: https://vitejs.dev/guide/build.html#library-mode
     build: {
+      minify: false,
       outDir: './dist',
       reportCompressedSize: true,
       commonjsOptions: {
