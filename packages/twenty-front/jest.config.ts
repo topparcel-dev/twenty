@@ -1,5 +1,6 @@
 import { JestConfigWithTsJest, pathsToModuleNameMapper } from 'ts-jest';
 
+// TODO refactor to import and working whatever current cwd is
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const tsConfig = require('./tsconfig.spec.json');
 process.env.TZ = 'GMT';

@@ -43,11 +43,13 @@ export default defineConfig(({ command }) => {
       checker(checkersConfig),
       wyw({
         include: [
-          '**/OverflowingTextWithTooltip.tsx',
-          '**/Chip.tsx',
-          '**/Tag.tsx',
           '**/Avatar.tsx',
           '**/AvatarChip.tsx',
+          '**/Chip.tsx',
+          '**/Tag.tsx',
+          '**/OverflowingTextWithTooltip.tsx',
+          '**/ContactLink.tsx',
+          '**/RoundedLink.tsx'
         ],
         babelOptions: {
           presets: ['@babel/preset-typescript', '@babel/preset-react'],

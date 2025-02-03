@@ -99,7 +99,7 @@ export default defineConfig(({ command, mode }) => {
         plugins: [['@lingui/swc-plugin', {}]],
       }),
       tsconfigPaths({
-        projects: ['tsconfig.json', '../twenty-ui/tsconfig.json'],
+        projects: ['tsconfig.json'],
       }),
       svgr(),
       lingui({
