@@ -12,7 +12,7 @@ import { UserPluginConfig } from 'vite-plugin-checker/dist/esm/types';
 
 // eslint-disable-next-line @nx/enforce-module-boundaries, import/no-relative-packages
 import packageJson from '../../package.json';
-
+console.log(packageJson)
 export default defineConfig(({ command }) => {
   const isBuildCommand = command === 'build';
 
@@ -58,6 +58,7 @@ export default defineConfig(({ command }) => {
     // Configuration for building your library.
     // See: https://vitejs.dev/guide/build.html#library-mode
     build: {
+      minify: false,
       outDir: './dist',
       reportCompressedSize: true,
       commonjsOptions: {
@@ -74,7 +75,9 @@ export default defineConfig(({ command }) => {
       },
       rollupOptions: {
         // External packages that should not be bundled into your library.
+        // Way to many libs
         external: Object.keys(packageJson.dependencies || {}),
+        treeshake: 'recommended'
       },
     },
   };

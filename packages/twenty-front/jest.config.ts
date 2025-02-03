@@ -1,7 +1,5 @@
 import { JestConfigWithTsJest, pathsToModuleNameMapper } from 'ts-jest';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const tsConfig = require('./tsconfig.spec.json');
+import tsConfig from "./tsconfig.spec.json";
 process.env.TZ = 'GMT';
 const jestConfig: JestConfigWithTsJest = {
   // to enable logs, comment out the following line

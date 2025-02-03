@@ -4,9 +4,9 @@ import { fetchGraphDataOrThrow } from '@/analytics/utils/fetchGraphDataOrThrow';
 import { SnackBarVariant } from '@/ui/feedback/snack-bar-manager/components/SnackBar';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { renderHook } from '@testing-library/react';
+jest.mock('@/ui/feedback/snack-bar-manager/hooks/useSnackBar');
 jest.mock('@/analytics/hooks/useAnalyticsTinybirdJwts');
 jest.mock('@/analytics/utils/fetchGraphDataOrThrow');
-jest.mock('@/ui/feedback/snack-bar-manager/hooks/useSnackBar');
 
 describe('useGraphData', () => {
   const mockEnqueueSnackBar = jest.fn();

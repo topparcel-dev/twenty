@@ -1,5 +1,8 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
   "exclude": [
     "**/*.spec.ts",
     "**/*.spec.tsx",

@@ -6,7 +6,7 @@
   "tags": ["scope:frontend"],
   "targets": {
     "build": {
-      "dependsOn": ["^build", "generateBarrels"]
+      "dependsOn": ["^build"]
     },
     "generateBarrels": {
       "executor": "nx:run-commands",

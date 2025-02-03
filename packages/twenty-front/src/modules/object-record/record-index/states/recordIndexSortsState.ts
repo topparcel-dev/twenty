@@ -1,4 +1,4 @@
-import { createState } from '@ui/utilities/state/utils/createState';
+import { createState } from 'twenty-shared';
 
 import { Sort } from '@/object-record/object-sort-dropdown/types/Sort';
 

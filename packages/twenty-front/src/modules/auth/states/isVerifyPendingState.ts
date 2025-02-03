@@ -1,4 +1,4 @@
-import { createState } from '@ui/utilities/state/utils/createState';
+import { createState } from 'twenty-shared';
 
 export const isVerifyPendingState = createState<boolean>({
   key: 'isVerifyPendingState',

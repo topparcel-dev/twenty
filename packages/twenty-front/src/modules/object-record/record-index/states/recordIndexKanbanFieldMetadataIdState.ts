@@ -1,4 +1,4 @@
-import { createState } from '@ui/utilities/state/utils/createState';
+import { createState } from 'twenty-shared';
 
 export const recordIndexKanbanFieldMetadataIdState = createState<string | null>(
   {

@@ -49,6 +49,9 @@
   "files.associations": {
     ".cursorrules": "markdown"
   },
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#e5a3a3",
+  },
   "jestrunner.codeLensSelector": "**/*.{test,spec,integration-spec}.{js,jsx,ts,tsx}"
   }
 }

@@ -4,19 +4,8 @@ import { useLingui } from '@lingui/react/macro';
 import { isUndefined } from '@sniptt/guards';
 import { ComponentPropsWithoutRef, ReactNode, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  IconAlertTriangle,
-  IconInfoCircle,
-  IconSquareRoundedCheck,
-  IconX,
-  LightButton,
-  LightIconButton,
-  MOBILE_VIEWPORT,
-  ProgressBar,
-  useProgressAnimation,
-} from 'twenty-ui';
-
 import { isDefined } from 'twenty-shared';
+import { IconAlertTriangle, IconInfoCircle, IconSquareRoundedCheck, IconX, LightButton, LightIconButton, MOBILE_VIEWPORT, ProgressBar, useProgressAnimation } from 'twenty-ui';
 
 export enum SnackBarVariant {
   Default = 'default',

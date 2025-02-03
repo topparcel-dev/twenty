@@ -1,3 +1,4 @@
-export * from './components/VisibilityHidden';
-export * from './components/VisibilityHiddenInput';
-export * from './utils/visibility-hidden';
+export { VisibilityHidden } from './components/VisibilityHidden';
+export { VisibilityHiddenInput } from './components/VisibilityHiddenInput';
+export { VISIBILITY_HIDDEN } from './utils/visibility-hidden';
+

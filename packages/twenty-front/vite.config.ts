@@ -98,9 +98,7 @@ export default defineConfig(({ command, mode }) => {
         jsxImportSource: '@emotion/react',
         plugins: [['@lingui/swc-plugin', {}]],
       }),
-      tsconfigPaths({
-        projects: ['tsconfig.json', '../twenty-ui/tsconfig.json'],
-      }),
+      tsconfigPaths(),
       svgr(),
       lingui({
         configPath: path.resolve(__dirname, './lingui.config.ts'),

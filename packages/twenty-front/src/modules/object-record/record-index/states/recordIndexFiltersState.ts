@@ -1,4 +1,4 @@
-import { createState } from '@ui/utilities/state/utils/createState';
+import { createState } from 'twenty-shared';
 
 import { RecordFilter } from '@/object-record/record-filter/types/RecordFilter';
 
