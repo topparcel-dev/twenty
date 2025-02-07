@@ -11,9 +11,10 @@ const jestConfig: JestConfigWithTsJest = {
   prettierPath: null,
   displayName: 'twenty-front',
   preset: '../../jest.preset.js',
-  setupFilesAfterEnv: ['./setupTests.ts'],
-  testEnvironment: 'jsdom',
-  transformIgnorePatterns: ['../../node_modules/'],
+  setupFiles: ['./setupTests.ts'],
+  setupFilesAfterEnv: ['./setupJestAfterEnv.ts'],
+  testEnvironment: 'jest-fixed-jsdom',
+  transformIgnorePatterns: ['node_modules/(?!(msw)/)'],
   transform: {
     '^.+\\.(ts|js|tsx|jsx)$': [
       '@swc/jest',

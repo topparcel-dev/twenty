@@ -55,6 +55,9 @@
     "twenty-shared": "workspace:*"
   },
   "devDependencies": {
-    "@types/file-saver": "^2"
+    "@types/file-saver": "^2",
+    "@types/supertest": "^6.0.2",
+    "jest-fixed-jsdom": "^0.0.9",
+    "supertest": "^7.0.0"
   }
 }

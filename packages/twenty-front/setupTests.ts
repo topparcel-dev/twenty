@@ -1,8 +1,9 @@
-// jest-dom adds custom jest matchers for asserting on DOM nodes.
-// allows you to do things like:
-// expect(element).toHaveTextContent(/react/i)
-// learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom';
+import { TextEncoder } from 'node:util';
+import 'whatwg-fetch'; // This adds fetch to the global scope
+
+// Add TextEncoder/TextDecoder to global scope
+global.TextEncoder = TextEncoder
+
 
 /**
  * The structuredClone global function is not available in jsdom, it needs to be mocked for now.
