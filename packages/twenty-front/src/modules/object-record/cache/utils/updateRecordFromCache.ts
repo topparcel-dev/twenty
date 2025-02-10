@@ -22,6 +22,10 @@ export const updateRecordFromCache = <T extends ObjectRecord>({
   recordGqlFields: Record<string, boolean>;
   record: T;
 }) => {
+  console.log({
+    record,
+    recordGqlFields
+  })
   if (isUndefinedOrNull(objectMetadataItem)) {
     return null;
   }

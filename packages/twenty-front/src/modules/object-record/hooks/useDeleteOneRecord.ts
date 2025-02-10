@@ -11,6 +11,7 @@ import { useDeleteOneRecordMutation } from '@/object-record/hooks/useDeleteOneRe
 import { useRefetchAggregateQueries } from '@/object-record/hooks/useRefetchAggregateQueries';
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { getDeleteOneRecordMutationResponseField } from '@/object-record/utils/getDeleteOneRecordMutationResponseField';
+import { isNull } from '@sniptt/guards';
 import { capitalize, isDefined } from 'twenty-shared';
 
 type useDeleteOneRecordProps = {
@@ -75,6 +76,7 @@ export const useDeleteOneRecord = ({
 
       const recordGqlFields = {
         deletedAt: true,
+        id: true,
       };
       updateRecordFromCache({
         objectMetadataItems,
@@ -92,6 +94,12 @@ export const useDeleteOneRecord = ({
         objectMetadataItems,
       });
 
+      console.log({
+        mutation: deleteOneRecordMutation,
+        variables: {
+          idToDelete: idToDelete,
+        },
+      });
       const deletedRecord = await apolloClient
         .mutate({
           mutation: deleteOneRecordMutation,
@@ -114,13 +122,17 @@ export const useDeleteOneRecord = ({
           },
         })
         .catch((error: Error) => {
-          if (!cachedRecord) {
+          console.log(error);
+          // {} is problematic here
+          if (isNull(cachedRecord)) {
             throw error;
           }
 
           const recordGqlFields = {
             deletedAt: true,
+            id: true,
           };
+          console.log({ cachedRecord });
           updateRecordFromCache({
             objectMetadataItems,
             objectMetadataItem,
@@ -128,6 +140,7 @@ export const useDeleteOneRecord = ({
             record: {
               ...cachedRecord,
               deletedAt: null,
+              id: idToDelete,
             },
             recordGqlFields,
           });
@@ -140,6 +153,7 @@ export const useDeleteOneRecord = ({
             objectMetadataItems,
           });
 
+          console.log("about to throw");
           throw error;
         });
 
