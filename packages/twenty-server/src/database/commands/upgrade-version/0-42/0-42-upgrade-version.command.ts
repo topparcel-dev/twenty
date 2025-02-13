@@ -8,6 +8,7 @@ import { BaseCommandOptions } from 'src/database/commands/base.command';
 import { FixBodyV2ViewFieldPositionCommand } from 'src/database/commands/upgrade-version/0-42/0-42-fix-body-v2-view-field-position.command';
 import { LimitAmountOfViewFieldCommand } from 'src/database/commands/upgrade-version/0-42/0-42-limit-amount-of-view-field';
 import { MigrateRichTextFieldCommand } from 'src/database/commands/upgrade-version/0-42/0-42-migrate-rich-text-field.command';
+import { StandardizeVariableViewFilterSyntaxCommand } from 'src/database/commands/upgrade-version/0-42/0-42-standardize-variable-view-filter-syntax.command';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
 
 @Command({
@@ -21,6 +22,7 @@ export class UpgradeTo0_42Command extends ActiveWorkspacesCommandRunner {
     private readonly migrateRichTextFieldCommand: MigrateRichTextFieldCommand,
     private readonly fixBodyV2ViewFieldPositionCommand: FixBodyV2ViewFieldPositionCommand,
     private readonly limitAmountOfViewFieldCommand: LimitAmountOfViewFieldCommand,
+    private readonly standardizeVariableViewFilterSyntaxCommand: StandardizeVariableViewFilterSyntaxCommand,
   ) {
     super(workspaceRepository);
   }
@@ -31,6 +33,12 @@ export class UpgradeTo0_42Command extends ActiveWorkspacesCommandRunner {
     workspaceIds: string[],
   ): Promise<void> {
     this.logger.log('Running command to upgrade to 0.42');
+
+    await this.standardizeVariableViewFilterSyntaxCommand.executeActiveWorkspacesCommand(
+      passedParam,
+      options,
+      workspaceIds,
+    );
 
     await this.migrateRichTextFieldCommand.executeActiveWorkspacesCommand(
       passedParam,
