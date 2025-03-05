@@ -292,6 +292,99 @@ describe('Custom object renaming', () => {
     expect(updatedRelationFieldMetadata.name).toBe(RELATION_FROM_NAME);
   });
 
+  it.skip('3.5 should rename custom object', async () => {
+    // Arrange
+    const HOUSE_NAME_SINGULAR = 'house';
+    const HOUSE_NAME_PLURAL = 'houses';
+    const HOUSE_LABEL_SINGULAR = 'House';
+    const HOUSE_LABEL_PLURAL = '';
+    const updateListingNameGraphqlOperation =
+      updateOneObjectMetadataItemFactory({
+        gqlFields: `
+        nameSingular
+        labelSingular
+        namePlural
+        labelPlural
+        `,
+        input: {
+          idToUpdate: listingObjectId,
+          updatePayload: {
+            nameSingular: HOUSE_NAME_SINGULAR,
+            namePlural: HOUSE_NAME_PLURAL,
+            labelSingular: HOUSE_LABEL_SINGULAR,
+            labelPlural: HOUSE_LABEL_PLURAL,
+          },
+        },
+      });
+
+    // Act
+    const updateListingNameResponse = await makeMetadataAPIRequest(
+      updateListingNameGraphqlOperation,
+    );
+
+    // Assert
+    expect(
+      updateListingNameResponse.body.data.updateOneObject.nameSingular,
+    ).toBe(HOUSE_NAME_SINGULAR);
+    expect(updateListingNameResponse.body.data.updateOneObject.namePlural).toBe(
+      HOUSE_NAME_PLURAL,
+    );
+    expect(
+      updateListingNameResponse.body.data.updateOneObject.labelSingular,
+    ).toBe(HOUSE_LABEL_SINGULAR);
+    expect(
+      updateListingNameResponse.body.data.updateOneObject.labelPlural,
+    ).toBe(HOUSE_LABEL_PLURAL);
+
+    const fieldsResponse = await makeMetadataAPIRequest(fieldsGraphqlOperation);
+
+    const fieldsMetadata = fieldsResponse.body.data.fields.edges.map(
+      (field) => field.node,
+    );
+
+    expect(
+      fieldsMetadata.find(
+        (field) => field.name === `${LISTING_NAME_SINGULAR}Id`,
+      ),
+    ).toBeUndefined();
+
+    // standard relations have been updated
+    STANDARD_OBJECT_RELATIONS.forEach((relation) => {
+      // foreignKey field
+      const foreignKeyFieldMetadataId =
+        standardObjectRelationsMap[relation].foreignKeyFieldMetadataId;
+
+      const updatedForeignKeyFieldMetadata = fieldsMetadata.find(
+        (field) => field.id === foreignKeyFieldMetadataId,
+      );
+
+      expect(updatedForeignKeyFieldMetadata.name).toBe(
+        `${HOUSE_NAME_SINGULAR}Id`,
+      );
+      expect(updatedForeignKeyFieldMetadata.label).toBe(
+        'House ID (foreign key)',
+      );
+
+      // relation field
+      const relationFieldMetadataId =
+        standardObjectRelationsMap[relation].relationFieldMetadataId;
+
+      const updatedRelationFieldMetadataId = fieldsMetadata.find(
+        (field) => field.id === relationFieldMetadataId,
+      );
+
+      expect(updatedRelationFieldMetadataId.name).toBe(HOUSE_NAME_SINGULAR);
+      expect(updatedRelationFieldMetadataId.label).toBe(HOUSE_LABEL_SINGULAR);
+    });
+
+    // custom relation are unchanged
+    const updatedRelationFieldMetadata = fieldsMetadata.find(
+      (field) => field.id === relationFieldMetadataOnPersonId,
+    );
+
+    expect(updatedRelationFieldMetadata.name).toBe(RELATION_FROM_NAME);
+  });
+
   it('4. should delete custom relation', async () => {
     const graphqlOperation = deleteOneRelationMetadataItemFactory({
       idToDelete: customRelationId,
