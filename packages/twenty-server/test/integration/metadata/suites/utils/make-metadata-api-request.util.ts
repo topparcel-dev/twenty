@@ -6,14 +6,17 @@ type GraphqlOperation = {
   variables?: Record<string, unknown>;
 };
 
-export const makeMetadataAPIRequest = (graphqlOperation: GraphqlOperation) => {
-  const client = request(`http://localhost:${APP_PORT}`);
+export const makeMetadataAPIRequest = (
+  graphqlOperation: GraphqlOperation,
+  unAuthenticated: boolean = false,
+) => {
+  const client = request(`http://localhost:${APP_PORT}`).post('/metadata');
 
-  return client
-    .post('/metadata')
-    .set('Authorization', `Bearer ${ADMIN_ACCESS_TOKEN}`)
-    .send({
-      query: print(graphqlOperation.query),
-      variables: graphqlOperation.variables || {},
-    });
+  if (!unAuthenticated) {
+    client.set('Authorization', `Bearer ${ADMIN_ACCESS_TOKEN}`);
+  }
+  return client.send({
+    query: print(graphqlOperation.query),
+    variables: graphqlOperation.variables || {},
+  });
 };

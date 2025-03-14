@@ -1,7 +1,7 @@
 import { EachTestingContext } from 'twenty-shared';
 
 import { CreateObjectInput } from 'src/engine/metadata-modules/object-metadata/dtos/create-object.input';
-import { performActivateWorkspace } from 'test/integration/utils/workspace/perform-activate-workspace';
+import { performSignUp } from 'test/integration/utils/workspace/perform-activate-workspace';
 
 type CreateObjectInputPayload = Omit<
   CreateObjectInput,
@@ -11,12 +11,14 @@ type CreateObjectInputPayload = Omit<
 type CreateOneObjectMetadataItemTestingContext = EachTestingContext<
   Partial<CreateObjectInputPayload>
 >[];
-describe('Object metadata creation should fail', () => {
+describe('Workspace activation', () => {
   it('should activate workspace', async () => {
-    const response = await performActivateWorkspace({
-      displayName: 'Acme',
-    });
+    const tmp = await performSignUp();
+    console.log(tmp.body);
+    // const response = await performActivateWorkspace({
+    //   displayName: 'Acme',
+    // });
 
-    console.log(response.body);
+    // console.log(response.body);
   });
 });
