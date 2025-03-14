@@ -135,6 +135,7 @@ export const TaskRow = ({ task }: { task: Task }) => {
               activity={task}
               showLabel={false}
               maxWidth={200}
+              multipleRecordPickerInstanceId={`task-row-multiple-record-picker-target-${task.id}`}
             />
           </TaskTargetsContextProvider>
         )}

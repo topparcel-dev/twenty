@@ -98,6 +98,7 @@ export const NoteCard = ({
             <ActivityTargetsInlineCell
               activity={note}
               activityObjectNameSingular={CoreObjectNameSingular.Note}
+              multipleRecordPickerInstanceId={`note-card-multiple-record-picker-target-${note.id}`}
             />
           </NoteTargetsContextProvider>
         )}

@@ -28,6 +28,7 @@ type ActivityTargetsInlineCellProps = {
   activityObjectNameSingular:
     | CoreObjectNameSingular.Note
     | CoreObjectNameSingular.Task;
+  multipleRecordPickerInstanceId: string;
 };
 
 export const ActivityTargetsInlineCell = ({
@@ -35,11 +36,10 @@ export const ActivityTargetsInlineCell = ({
   showLabel = true,
   maxWidth,
   activityObjectNameSingular,
+  multipleRecordPickerInstanceId,
 }: ActivityTargetsInlineCellProps) => {
   const { activityTargetObjectRecords } =
     useActivityTargetObjectRecords(activity);
-
-  const multipleRecordPickerInstanceId = `multiple-record-picker-target-${activity.id}`;
 
   const { closeInlineCell } = useInlineCell();
 

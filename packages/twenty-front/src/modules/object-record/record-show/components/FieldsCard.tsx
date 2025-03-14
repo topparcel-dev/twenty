@@ -124,6 +124,7 @@ export const FieldsCard = ({
                         activity={recordFromStore as Task | Note}
                         showLabel={true}
                         maxWidth={200}
+                        multipleRecordPickerInstanceId={`fields-card-multiple-record-picker-target-${objectRecordId}`}
                       />
                     </FieldContext.Provider>
                   ),
