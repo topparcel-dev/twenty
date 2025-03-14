@@ -5,6 +5,8 @@ import { GraphQLSchema } from 'graphql';
 import { WorkspaceResolverBuilderMethods } from 'src/engine/api/graphql/workspace-resolver-builder/interfaces/workspace-resolvers-builder.interface';
 import { ObjectMetadataInterface } from 'src/engine/metadata-modules/field-metadata/interfaces/object-metadata.interface';
 
+import { SubscriptionTypeFactory } from 'src/engine/api/graphql/workspace-schema-builder/factories/subscription-type.factory';
+
 import { TypeDefinitionsGenerator } from './type-definitions.generator';
 
 import { MutationTypeFactory } from './factories/mutation-type.factory';
@@ -18,6 +20,7 @@ export class WorkspaceGraphQLSchemaFactory {
     private readonly typeDefinitionsGenerator: TypeDefinitionsGenerator,
     private readonly queryTypeFactory: QueryTypeFactory,
     private readonly mutationTypeFactory: MutationTypeFactory,
+    private readonly subscriptionTypeFactory: SubscriptionTypeFactory,
     private readonly orphanedTypesFactory: OrphanedTypesFactory,
   ) {}
 
@@ -42,6 +45,11 @@ export class WorkspaceGraphQLSchemaFactory {
       mutation: this.mutationTypeFactory.create(
         objectMetadataCollection,
         [...workspaceResolverBuilderMethods.mutations],
+        options,
+      ),
+      subscription: this.subscriptionTypeFactory.create(
+        objectMetadataCollection,
+        [...workspaceResolverBuilderMethods.subscriptions],
         options,
       ),
       types: this.orphanedTypesFactory.create(),

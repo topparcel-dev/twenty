@@ -13,6 +13,7 @@ import { WorkspaceResolverBuilderService } from 'src/engine/api/graphql/workspac
 import { AuthContext } from 'src/engine/core-modules/auth/types/auth-context.type';
 import { ObjectMetadataMaps } from 'src/engine/metadata-modules/types/object-metadata-maps';
 import { getResolverName } from 'src/engine/utils/get-resolver-name.util';
+import { OneUpdatedResolverFactory } from 'src/engine/api/graphql/workspace-resolver-builder/factories/one-updated-resolver.factory';
 
 import { CreateManyResolverFactory } from './factories/create-many-resolver.factory';
 import { CreateOneResolverFactory } from './factories/create-one-resolver.factory';
@@ -45,6 +46,7 @@ export class WorkspaceResolverFactory {
     private readonly restoreOneResolverFactory: RestoreOneResolverFactory,
     private readonly restoreManyResolverFactory: RestoreManyResolverFactory,
     private readonly destroyManyResolverFactory: DestroyManyResolverFactory,
+    private readonly oneUpdatedResolverFactory: OneUpdatedResolverFactory,
     private readonly searchResolverFactory: SearchResolverFactory,
     private readonly workspaceResolverBuilderService: WorkspaceResolverBuilderService,
   ) {}
@@ -72,9 +74,11 @@ export class WorkspaceResolverFactory {
       ['search', this.searchResolverFactory],
       ['updateMany', this.updateManyResolverFactory],
       ['updateOne', this.updateOneResolverFactory],
+      ['oneUpdated', this.oneUpdatedResolverFactory],
     ]);
     const resolvers: IResolvers = {
       Query: {},
+      Subscription: {},
       Mutation: {},
     };
 

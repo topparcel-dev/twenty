@@ -175,6 +175,8 @@ export class WorkspaceSchemaFactory {
     const scalarsResolvers =
       this.scalarsExplorerService.getScalarResolvers(usedScalarNames);
 
+    console.log('executableSchema');
+
     const executableSchema = makeExecutableSchema({
       typeDefs: gql`
         ${typeDefs}

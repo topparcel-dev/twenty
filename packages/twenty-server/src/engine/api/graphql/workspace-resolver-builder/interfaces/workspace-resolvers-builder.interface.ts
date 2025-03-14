@@ -23,6 +23,7 @@ export enum ResolverArgsType {
   RestoreMany = 'RestoreMany',
   DestroyMany = 'DestroyMany',
   DestroyOne = 'DestroyOne',
+  OneUpdated = 'OneUpdated',
 }
 
 export interface FindManyResolverArgs<
@@ -85,6 +86,10 @@ export interface UpdateManyResolverArgs<
   data: Data;
 }
 
+export interface OneUpdatedResolverArgs {
+  id: string;
+}
+
 export interface DeleteOneResolverArgs {
   id: string;
 }
@@ -115,13 +120,18 @@ export type WorkspaceResolverBuilderQueryMethodNames =
 export type WorkspaceResolverBuilderMutationMethodNames =
   (typeof workspaceResolverBuilderMethodNames.mutations)[number];
 
+export type WorkspaceResolverBuilderSubscriptionMethodNames =
+  (typeof workspaceResolverBuilderMethodNames.subscriptions)[number];
+
 export type WorkspaceResolverBuilderMethodNames =
   | WorkspaceResolverBuilderQueryMethodNames
-  | WorkspaceResolverBuilderMutationMethodNames;
+  | WorkspaceResolverBuilderMutationMethodNames
+  | WorkspaceResolverBuilderSubscriptionMethodNames;
 
 export interface WorkspaceResolverBuilderMethods {
   readonly queries: readonly WorkspaceResolverBuilderQueryMethodNames[];
   readonly mutations: readonly WorkspaceResolverBuilderMutationMethodNames[];
+  readonly subscriptions: readonly WorkspaceResolverBuilderSubscriptionMethodNames[];
 }
 
 export type ResolverArgs =
@@ -137,4 +147,5 @@ export type ResolverArgs =
   | RestoreOneResolverArgs
   | SearchResolverArgs
   | UpdateManyResolverArgs
-  | UpdateOneResolverArgs;
+  | UpdateOneResolverArgs
+  | OneUpdatedResolverArgs;

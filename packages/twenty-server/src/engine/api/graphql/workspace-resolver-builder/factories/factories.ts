@@ -4,6 +4,7 @@ import { RestoreManyResolverFactory } from 'src/engine/api/graphql/workspace-res
 import { RestoreOneResolverFactory } from 'src/engine/api/graphql/workspace-resolver-builder/factories/restore-one-resolver.factory';
 import { SearchResolverFactory } from 'src/engine/api/graphql/workspace-resolver-builder/factories/search-resolver-factory';
 import { UpdateManyResolverFactory } from 'src/engine/api/graphql/workspace-resolver-builder/factories/update-many-resolver.factory';
+import { OneUpdatedResolverFactory } from 'src/engine/api/graphql/workspace-resolver-builder/factories/one-updated-resolver.factory';
 
 import { CreateManyResolverFactory } from './create-many-resolver.factory';
 import { CreateOneResolverFactory } from './create-one-resolver.factory';
@@ -29,6 +30,7 @@ export const workspaceResolverBuilderFactories = [
   RestoreOneResolverFactory,
   RestoreManyResolverFactory,
   SearchResolverFactory,
+  OneUpdatedResolverFactory,
 ];
 
 export const workspaceResolverBuilderMethodNames = {
@@ -50,4 +52,5 @@ export const workspaceResolverBuilderMethodNames = {
     RestoreOneResolverFactory.methodName,
     RestoreManyResolverFactory.methodName,
   ],
+  subscriptions: [OneUpdatedResolverFactory.methodName],
 } as const;

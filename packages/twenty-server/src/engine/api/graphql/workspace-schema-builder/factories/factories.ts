@@ -5,6 +5,7 @@ import { CompositeObjectTypeDefinitionFactory } from 'src/engine/api/graphql/wor
 import { EnumTypeDefinitionFactory } from 'src/engine/api/graphql/workspace-schema-builder/factories/enum-type-definition.factory';
 import { ExtendObjectTypeDefinitionV2Factory } from 'src/engine/api/graphql/workspace-schema-builder/factories/extend-object-type-definition-v2.factory';
 import { RelationTypeV2Factory } from 'src/engine/api/graphql/workspace-schema-builder/factories/relation-type-v2.factory';
+import { SubscriptionTypeFactory } from 'src/engine/api/graphql/workspace-schema-builder/factories/subscription-type.factory';
 
 import { ArgsFactory } from './args.factory';
 import { ConnectionTypeDefinitionFactory } from './connection-type-definition.factory';
@@ -43,6 +44,7 @@ export const workspaceSchemaBuilderFactories = [
   RootTypeFactory,
   QueryTypeFactory,
   MutationTypeFactory,
+  SubscriptionTypeFactory,
   OrphanedTypesFactory,
   AggregationTypeFactory,
 ];
