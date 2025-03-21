@@ -1,5 +1,4 @@
-import { FieldMetadataType } from 'twenty-shared';
-
+import { FieldMetadataType } from 'twenty-shared/types';
 export const getDefaultFormFieldSettings = (type: FieldMetadataType) => {
   switch (type) {
     case FieldMetadataType.TEXT:
