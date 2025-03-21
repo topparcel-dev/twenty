@@ -4,7 +4,7 @@ import {
 } from '@/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep';
 import { Field } from '@/spreadsheet-import/types';
 import { normalizeTableData } from '@/spreadsheet-import/utils/normalizeTableData';
-import { FieldMetadataType } from 'twenty-shared/types';
+import { FieldMetadataType } from 'twenty-shared';
 
 describe('normalizeTableData', () => {
   const columns: Column<string>[] = [

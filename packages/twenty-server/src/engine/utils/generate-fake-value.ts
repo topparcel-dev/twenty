@@ -1,4 +1,4 @@
-import { FieldMetadataType } from 'twenty-shared/types';
+import { FieldMetadataType } from 'twenty-shared';
 
 type FakeValueTypes =
   | string

@@ -16,6 +16,7 @@ import { ViewFilterGroupLogicalOperator } from '@/views/types/ViewFilterGroupLog
 import styled from '@emotion/styled';
 import { useLingui } from '@lingui/react/macro';
 import { useRecoilValue } from 'recoil';
+import { isDefined } from 'twenty-shared';
 import {
   IconFilter,
   MenuItemLeftContent,
@@ -23,7 +24,6 @@ import {
   StyledMenuItemBase,
 } from 'twenty-ui';
 import { v4 } from 'uuid';
-import { isDefined } from 'twenty-shared/utils';
 
 export const StyledContainer = styled.div`
   align-items: center;

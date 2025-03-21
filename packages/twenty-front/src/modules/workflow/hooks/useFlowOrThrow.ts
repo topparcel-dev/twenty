@@ -1,6 +1,6 @@
 import { flowState } from '@/workflow/states/flowState';
 import { useRecoilValue } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const useFlowOrThrow = () => {
   const flow = useRecoilValue(flowState);

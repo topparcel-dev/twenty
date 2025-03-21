@@ -1,8 +1,5 @@
 import { msg } from '@lingui/core/macro';
-import {
-  ConnectedAccountProvider,
-  FieldMetadataType,
-} from 'twenty-shared/types';
+import { ConnectedAccountProvider, FieldMetadataType } from 'twenty-shared';
 
 import { Relation } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/relation.interface';
 

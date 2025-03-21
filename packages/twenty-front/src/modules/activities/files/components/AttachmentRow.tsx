@@ -15,6 +15,7 @@ import { TextInput } from '@/ui/input/components/TextInput';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { useMemo, useState } from 'react';
+import { isDefined } from 'twenty-shared';
 import {
   IconCalendar,
   OverflowingTextWithTooltip,
@@ -23,7 +24,6 @@ import {
 
 import { formatToHumanReadableDate } from '~/utils/date-utils';
 import { getFileNameAndExtension } from '~/utils/file/getFileNameAndExtension';
-import { isDefined } from 'twenty-shared/utils';
 
 const StyledLeftContent = styled.div`
   align-items: center;

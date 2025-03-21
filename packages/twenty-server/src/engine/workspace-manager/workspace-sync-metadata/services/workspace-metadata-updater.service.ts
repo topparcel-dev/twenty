@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
+import { capitalize, FieldMetadataType } from 'twenty-shared';
 import {
   EntityManager,
   EntityTarget,
@@ -10,8 +11,6 @@ import {
 } from 'typeorm';
 import { DeepPartial } from 'typeorm/common/DeepPartial';
 import { v4 as uuidV4 } from 'uuid';
-import { capitalize } from 'twenty-shared/utils';
-import { FieldMetadataType } from 'twenty-shared/types';
 
 import { PartialFieldMetadata } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/partial-field-metadata.interface';
 import { PartialIndexMetadata } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/partial-index-metadata.interface';

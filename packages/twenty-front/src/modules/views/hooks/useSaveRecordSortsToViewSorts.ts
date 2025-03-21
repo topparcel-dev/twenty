@@ -8,7 +8,7 @@ import { getViewSortsToDelete } from '@/views/utils/getViewSortsToDelete';
 import { getViewSortsToUpdate } from '@/views/utils/getViewSortsToUpdate';
 import { mapRecordSortToViewSort } from '@/views/utils/mapRecordSortToViewSort';
 import { useRecoilCallback } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const useSaveRecordSortsToViewSorts = () => {
   const {

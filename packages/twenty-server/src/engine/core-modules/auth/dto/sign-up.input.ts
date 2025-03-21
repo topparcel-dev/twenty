@@ -1,7 +1,7 @@
 import { ArgsType, Field } from '@nestjs/graphql';
 
 import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { APP_LOCALES } from 'twenty-shared/translations';
+import { APP_LOCALES } from 'twenty-shared';
 
 @ArgsType()
 export class SignUpInput {

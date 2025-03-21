@@ -1,4 +1,4 @@
-import { isValidUuid } from 'twenty-shared/utils';
+import { isValidUuid } from 'twenty-shared';
 
 import {
   WorkspaceQueryRunnerException,

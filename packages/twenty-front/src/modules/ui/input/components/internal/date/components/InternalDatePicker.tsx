@@ -8,6 +8,7 @@ import {
 } from 'twenty-ui';
 
 import { useDropdown } from '@/ui/layout/dropdown/hooks/useDropdown';
+import { isDefined } from 'twenty-shared';
 
 import { AbsoluteDatePickerHeader } from '@/ui/input/components/internal/date/components/AbsoluteDatePickerHeader';
 import { DateTimeInput } from '@/ui/input/components/internal/date/components/DateTimeInput';
@@ -21,7 +22,6 @@ import {
 import { t } from '@lingui/core/macro';
 import { useContext } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { isDefined } from 'twenty-shared/utils';
 
 export const MONTH_AND_YEAR_DROPDOWN_ID = 'date-picker-month-and-year-dropdown';
 export const MONTH_AND_YEAR_DROPDOWN_MONTH_SELECT_ID =

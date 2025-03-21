@@ -3,7 +3,7 @@ import { BaseEmail } from 'src/components/BaseEmail';
 import { CallToAction } from 'src/components/CallToAction';
 import { MainText } from 'src/components/MainText';
 import { Title } from 'src/components/Title';
-import { APP_LOCALES } from 'twenty-shared/translations';
+import { APP_LOCALES } from 'twenty-shared';
 
 type CleanSuspendedWorkspaceEmailProps = {
   daysSinceInactive: number;

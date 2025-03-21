@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { isDefined } from 'twenty-shared/utils';
-import { PermissionsOnAllObjectRecords } from 'twenty-shared/constants';
+import { isDefined, PermissionsOnAllObjectRecords } from 'twenty-shared';
 
 import {
   AuthException,

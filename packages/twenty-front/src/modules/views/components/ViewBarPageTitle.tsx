@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { PageTitle } from '@/ui/utilities/page-title/components/PageTitle';
 import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
-import { capitalize } from 'twenty-shared/utils';
+import { capitalize } from 'twenty-shared';
 
 export const ViewBarPageTitle = () => {
   const { objectNamePlural } = useParams();

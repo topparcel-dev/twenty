@@ -1,4 +1,4 @@
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 import { User } from 'src/engine/core-modules/user/user.entity';
 import {

@@ -3,12 +3,12 @@ import { LinkType, RoundedLink, SocialLink } from 'twenty-ui';
 
 import { FieldLinksValue } from '@/object-record/record-field/types/FieldMetadata';
 import { ExpandableList } from '@/ui/layout/expandable-list/components/ExpandableList';
-import { checkUrlType } from '~/utils/checkUrlType';
 import {
   getAbsoluteUrlOrThrow,
   getUrlHostnameOrThrow,
   isDefined,
-} from 'twenty-shared/utils';
+} from 'twenty-shared';
+import { checkUrlType } from '~/utils/checkUrlType';
 
 type LinksDisplayProps = {
   value?: FieldLinksValue;

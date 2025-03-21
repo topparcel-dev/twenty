@@ -1,4 +1,6 @@
 import { Bundle, ZObject } from 'zapier-platform-core';
+
+import { capitalize } from 'twenty-shared';
 import { findObjectNamesSingularKey } from '../triggers/find_object_names_singular';
 import { listRecordIdsKey } from '../triggers/list_record_ids';
 import { computeInputFields } from '../utils/computeInputFields';
@@ -6,7 +8,6 @@ import { InputData } from '../utils/data.types';
 import handleQueryParams from '../utils/handleQueryParams';
 import requestDb, { requestSchema } from '../utils/requestDb';
 import { DatabaseEventAction } from '../utils/triggers/triggers.utils';
-import { capitalize } from 'twenty-shared/utils';
 
 export const recordInputFields = async (
   z: ZObject,

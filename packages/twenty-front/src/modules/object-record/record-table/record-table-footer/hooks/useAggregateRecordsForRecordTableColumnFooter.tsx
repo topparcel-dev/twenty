@@ -15,7 +15,7 @@ import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/
 import { UserContext } from '@/users/contexts/UserContext';
 import { useContext } from 'react';
 import { useRecoilValue } from 'recoil';
-import { isDefined, isFieldMetadataDateKind } from 'twenty-shared/utils';
+import { isDefined, isFieldMetadataDateKind } from 'twenty-shared';
 
 export const useAggregateRecordsForRecordTableColumnFooter = (
   fieldMetadataId: string,

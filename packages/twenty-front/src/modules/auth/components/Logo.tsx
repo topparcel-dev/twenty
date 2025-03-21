@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { isNonEmptyString } from '@sniptt/guards';
+
+import { getImageAbsoluteURI } from 'twenty-shared';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
-import { getImageAbsoluteURI } from 'twenty-shared/utils';
 
 type LogoProps = {
   primaryLogo?: string | null;

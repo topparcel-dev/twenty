@@ -15,7 +15,8 @@ import {
   ProgressBar,
   useProgressAnimation,
 } from 'twenty-ui';
-import { isDefined } from 'twenty-shared/utils';
+
+import { isDefined } from 'twenty-shared';
 
 export enum SnackBarVariant {
   Default = 'default',

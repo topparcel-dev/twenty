@@ -1,6 +1,7 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 
 import { IDField } from '@ptc-org/nestjs-query-graphql';
+import { PermissionsOnAllObjectRecords } from 'twenty-shared';
 import {
   Column,
   CreateDateColumn,
@@ -14,7 +15,6 @@ import {
   Unique,
   UpdateDateColumn,
 } from 'typeorm';
-import { PermissionsOnAllObjectRecords } from 'twenty-shared/constants';
 
 import { UUIDScalarType } from 'src/engine/api/graphql/workspace-schema-builder/graphql-types/scalars';
 import { TwoFactorMethod } from 'src/engine/core-modules/two-factor-method/two-factor-method.entity';

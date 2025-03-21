@@ -2,8 +2,7 @@ import { useLabelIdentifierFieldMetadataItem } from '@/object-metadata/hooks/use
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
 import { PageTitle } from '@/ui/utilities/page-title/components/PageTitle';
 import { useRecoilValue } from 'recoil';
-import { FieldMetadataType } from 'twenty-shared/types';
-import { capitalize, isDefined } from 'twenty-shared/utils';
+import { FieldMetadataType, capitalize, isDefined } from 'twenty-shared';
 
 export const RecordShowPageTitle = ({
   objectNameSingular,

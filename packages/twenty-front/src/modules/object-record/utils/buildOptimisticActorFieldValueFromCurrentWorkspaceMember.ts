@@ -1,6 +1,6 @@
 import { CurrentWorkspaceMember } from '@/auth/states/currentWorkspaceMemberState';
 import { FieldActorValue } from '@/object-record/record-field/types/FieldMetadata';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const buildOptimisticActorFieldValueFromCurrentWorkspaceMember = (
   currentWorkspaceMember: CurrentWorkspaceMember | null,

@@ -5,7 +5,8 @@ import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/
 import { useSetRecoilComponentStateV2 } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentStateV2';
 import { mapViewSortsToSorts } from '@/views/utils/mapViewSortsToSorts';
 import { useRecoilValue } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+
+import { isDefined } from 'twenty-shared';
 
 export const useApplyCurrentViewSortsToCurrentRecordSorts = () => {
   const currentViewId = useRecoilComponentValueV2(

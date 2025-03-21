@@ -1,6 +1,7 @@
 import { CalendarChannel } from '@/accounts/types/CalendarChannel';
+
+import { ConnectedAccountProvider } from 'twenty-shared';
 import { MessageChannel } from './MessageChannel';
-import { ConnectedAccountProvider } from 'twenty-shared/types';
 
 export type ConnectedAccount = {
   id: string;

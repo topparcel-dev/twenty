@@ -18,6 +18,7 @@ import { useSelectableList } from '@/ui/layout/selectable-list/hooks/useSelectab
 import { useRecoilComponentValueV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValueV2';
 import { useSetRecoilComponentStateV2 } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentStateV2';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
+import { isDefined } from 'twenty-shared';
 import { FeatureFlagKey } from '~/generated/graphql';
 
 import { useSelectFilterUsedInDropdown } from '@/object-record/object-filter-dropdown/hooks/useSelectFilterUsedInDropdown';
@@ -28,7 +29,6 @@ import { useFilterableFieldMetadataItemsInRecordIndexContext } from '@/object-re
 import { useRecoilComponentStateV2 } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentStateV2';
 import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 import { useLingui } from '@lingui/react/macro';
-import { isDefined } from 'twenty-shared/utils';
 
 export const StyledInput = styled.input`
   background: transparent;

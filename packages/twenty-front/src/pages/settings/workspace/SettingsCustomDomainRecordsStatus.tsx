@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { customDomainRecordsState } from '~/pages/settings/workspace/states/customDomainRecordsState';
 import { useRecoilValue } from 'recoil';
-import { capitalize } from 'twenty-shared/utils';
+import { capitalize } from 'twenty-shared';
 
 const StyledTable = styled(Table)`
   background-color: ${({ theme }) => theme.background.transparent.lighter};

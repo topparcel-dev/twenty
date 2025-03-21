@@ -1,4 +1,5 @@
-import { FieldMetadataType } from 'twenty-shared/types';
+import { FieldMetadataType } from 'twenty-shared';
+
 export type EnumFieldMetadataUnionType =
   | FieldMetadataType.RATING
   | FieldMetadataType.SELECT

@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 
 import Cloudflare from 'cloudflare';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 import {
   DomainManagerException,

@@ -1,7 +1,7 @@
 import { WorkflowRunOutput } from '@/workflow/types/Workflow';
 import { WorkflowDiagramRunStatus } from '@/workflow/workflow-diagram/types/WorkflowDiagram';
 import { isNull } from '@sniptt/guards';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const getWorkflowRunStepExecutionStatus = ({
   workflowRunOutput,

@@ -1,6 +1,6 @@
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { getOrderByFieldForObjectMetadataItem } from '@/object-metadata/utils/getObjectOrderByField';
-import { capitalize, isDefined } from 'twenty-shared/utils';
+import { capitalize, isDefined } from 'twenty-shared';
 
 export const useOrderByFieldPerMetadataItem = ({
   objectMetadataItems,

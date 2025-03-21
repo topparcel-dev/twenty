@@ -1,7 +1,6 @@
 import { Field } from '@/spreadsheet-import/types';
 import { findMatch } from '@/spreadsheet-import/utils/findMatch';
-import { FieldMetadataType } from 'twenty-shared/types';
-
+import { FieldMetadataType } from 'twenty-shared';
 describe('findMatch', () => {
   const defaultField: Field<'defaultField'> = {
     key: 'defaultField',

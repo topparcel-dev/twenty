@@ -7,6 +7,7 @@ import { getDefaultFormFieldSettings } from '@/workflow/workflow-steps/workflow-
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
+import { FieldMetadataType } from 'twenty-shared';
 import {
   IconSettingsAutomation,
   IconX,
@@ -14,7 +15,6 @@ import {
   IllustrationIconText,
   LightIconButton,
 } from 'twenty-ui';
-import { FieldMetadataType } from 'twenty-shared/types';
 
 type WorkflowEditActionFormFieldSettingsProps = {
   field: WorkflowFormActionField;

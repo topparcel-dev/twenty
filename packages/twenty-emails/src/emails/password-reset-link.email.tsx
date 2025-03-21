@@ -4,7 +4,7 @@ import { CallToAction } from 'src/components/CallToAction';
 import { Link } from 'src/components/Link';
 import { MainText } from 'src/components/MainText';
 import { Title } from 'src/components/Title';
-import { APP_LOCALES } from 'twenty-shared/translations';
+import { APP_LOCALES } from 'twenty-shared';
 
 type PasswordResetLinkEmailProps = {
   duration: string;

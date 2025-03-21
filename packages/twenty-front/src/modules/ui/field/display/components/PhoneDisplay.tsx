@@ -1,7 +1,8 @@
 import { parsePhoneNumber, PhoneNumber } from 'libphonenumber-js';
 import { MouseEvent } from 'react';
 import { ContactLink } from 'twenty-ui';
-import { isDefined } from 'twenty-shared/utils';
+
+import { isDefined } from 'twenty-shared';
 
 interface PhoneDisplayProps {
   value: PhoneDisplayValueProps;

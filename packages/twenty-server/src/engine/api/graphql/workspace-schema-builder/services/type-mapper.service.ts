@@ -13,7 +13,7 @@ import {
   GraphQLString,
   GraphQLType,
 } from 'graphql';
-import { FieldMetadataType } from 'twenty-shared/types';
+import { FieldMetadataType } from 'twenty-shared';
 
 import { FieldMetadataSettings } from 'src/engine/metadata-modules/field-metadata/interfaces/field-metadata-settings.interface';
 

@@ -1,7 +1,7 @@
 import { objectMetadataItemsState } from '@/object-metadata/states/objectMetadataItemsState';
 import { filterSortableFieldMetadataItems } from '@/object-metadata/utils/filterSortableFieldMetadataItems';
 import { selectorFamily } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const availableFieldMetadataItemsForSortFamilySelector = selectorFamily({
   key: 'availableFieldMetadataItemsForSortFamilySelector',

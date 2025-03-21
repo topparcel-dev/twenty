@@ -10,7 +10,7 @@ import { hasInitializedCurrentRecordFiltersComponentFamilyState } from '@/views/
 import { mapViewFiltersToFilters } from '@/views/utils/mapViewFiltersToFilters';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const ViewBarRecordFilterEffect = () => {
   const currentViewId = useRecoilComponentValueV2(

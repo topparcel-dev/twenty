@@ -5,7 +5,7 @@ import { getViewFilterGroupsToCreate } from '@/views/utils/getViewFilterGroupsTo
 import { getViewFilterGroupsToDelete } from '@/views/utils/getViewFilterGroupsToDelete';
 import { getViewFilterGroupsToUpdate } from '@/views/utils/getViewFilterGroupsToUpdate';
 import { mapRecordFilterGroupToViewFilterGroup } from '@/views/utils/mapRecordFilterGroupToViewFilterGroup';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const useAreViewFilterGroupsDifferentFromRecordFilterGroups = () => {
   const { currentView } = useGetCurrentViewOnly();

@@ -1,7 +1,7 @@
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { getObjectRecordIdentifier } from '@/object-metadata/utils/getObjectRecordIdentifier';
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
-import { capitalize } from 'twenty-shared/utils';
+import { capitalize } from 'twenty-shared';
 
 export const getSelectedRecordsContextText = (
   objectMetadataItem: ObjectMetadataItem,

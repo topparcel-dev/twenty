@@ -1,6 +1,6 @@
 import { join } from 'path';
 
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 import { FileFolder } from 'src/engine/core-modules/file/interfaces/file-folder.interface';
 

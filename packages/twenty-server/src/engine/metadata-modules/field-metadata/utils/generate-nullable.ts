@@ -1,4 +1,5 @@
-import { FieldMetadataType } from 'twenty-shared/types';
+import { FieldMetadataType } from 'twenty-shared';
+
 export function generateNullable(
   type: FieldMetadataType,
   inputNullableValue?: boolean,

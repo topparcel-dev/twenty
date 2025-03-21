@@ -1,4 +1,5 @@
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
+
 export const isArgDefinedIfProvidedOrThrow = ({
   input,
   key,

@@ -1,5 +1,6 @@
 import { ObjectMetadataSeed } from 'src/engine/seeder/interfaces/object-metadata-seed';
-import { FieldMetadataType } from 'twenty-shared/types';
+
+import { FieldMetadataType } from 'twenty-shared';
 
 export const PETS_METADATA_SEEDS: ObjectMetadataSeed = {
   labelPlural: 'Pets',

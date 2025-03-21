@@ -1,4 +1,5 @@
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
+
 export const getDraggedRecordPosition = (
   recordBeforePosition?: number,
   recordAfterPosition?: number,

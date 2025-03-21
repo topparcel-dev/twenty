@@ -1,5 +1,5 @@
 import { FieldPhonesValue } from '@/object-record/record-field/types/FieldMetadata';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const createPhonesFromFieldValue = (fieldValue: FieldPhonesValue) => {
   return !isDefined(fieldValue)

@@ -2,10 +2,11 @@ import { Options, useHotkeys } from 'react-hotkeys-hook';
 import { Keys } from 'react-hotkeys-hook/dist/types';
 import { useRecoilState } from 'recoil';
 
+import { isDefined } from 'twenty-shared';
+
 import { pendingHotkeyState } from '../states/internal/pendingHotkeysState';
 
 import { useScopedHotkeyCallback } from './useScopedHotkeyCallback';
-import { isDefined } from 'twenty-shared/utils';
 
 export const useSequenceHotkeys = (
   firstKey: Keys,

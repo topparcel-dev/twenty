@@ -5,7 +5,7 @@ import { Loader } from '@ui/feedback/loader/components/Loader';
 import { codeEditorTheme } from '@ui/input';
 import { editor } from 'monaco-editor';
 import { useState } from 'react';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 type CodeEditorProps = Omit<EditorProps, 'onChange'> & {
   onChange?: (value: string) => void;

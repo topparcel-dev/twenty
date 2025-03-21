@@ -13,7 +13,7 @@ import { useDestroyOneRecordMutation } from '@/object-record/hooks/useDestroyOne
 import { useUpdateOneRecordMutation } from '@/object-record/hooks/useUpdateOneRecordMutation';
 import { GraphQLView } from '@/views/types/GraphQLView';
 import { ViewSort } from '@/views/types/ViewSort';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const usePersistViewSortRecords = () => {
   const { objectMetadataItem } = useObjectMetadataItem({

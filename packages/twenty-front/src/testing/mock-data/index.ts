@@ -6,7 +6,7 @@ import {
   isString,
 } from '@sniptt/guards';
 import { GraphQLVariables } from 'msw';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 type StringFilter = {
   equals?: string;

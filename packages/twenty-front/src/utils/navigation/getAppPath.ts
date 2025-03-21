@@ -1,7 +1,7 @@
 import { AppPath } from '@/types/AppPath';
 import qs from 'qs';
 import { generatePath, PathParam } from 'react-router-dom';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const getAppPath = <T extends AppPath>(
   to: T,

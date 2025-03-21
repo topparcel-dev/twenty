@@ -5,7 +5,8 @@ import {
   ValueAnimationTransition,
 } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { isDefined } from 'twenty-shared/utils';
+
+import { isDefined } from 'twenty-shared';
 
 export const useProgressAnimation = ({
   autoPlay = true,

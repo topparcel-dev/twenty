@@ -1,9 +1,12 @@
 import { GraphQLISODateTime } from '@nestjs/graphql';
 
 import { GraphQLFloat, GraphQLInt, GraphQLScalarType } from 'graphql';
-import { capitalize, isFieldMetadataDateKind } from 'twenty-shared/utils';
-import { FIELD_FOR_TOTAL_COUNT_AGGREGATE_OPERATION } from 'twenty-shared/constants';
-import { FieldMetadataType } from 'twenty-shared/types';
+import {
+  capitalize,
+  FIELD_FOR_TOTAL_COUNT_AGGREGATE_OPERATION,
+  FieldMetadataType,
+  isFieldMetadataDateKind,
+} from 'twenty-shared';
 
 import { FieldMetadataInterface } from 'src/engine/metadata-modules/field-metadata/interfaces/field-metadata.interface';
 

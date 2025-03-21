@@ -11,6 +11,7 @@ import {
 } from '@/object-record/record-field/types/FieldMetadata';
 import { SettingsFieldTypeConfig } from '@/settings/data-model/constants/SettingsNonCompositeFieldTypeConfigs';
 import { CompositeFieldType } from '@/settings/data-model/types/CompositeFieldType';
+import { ConnectedAccountProvider } from 'twenty-shared';
 import {
   IllustrationIconCurrency,
   IllustrationIconLink,
@@ -22,7 +23,6 @@ import {
   IllustrationIconUser,
 } from 'twenty-ui';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
-import { ConnectedAccountProvider } from 'twenty-shared/types';
 
 export type SettingsCompositeFieldTypeConfig<T> = SettingsFieldTypeConfig<T> & {
   subFields: (keyof T)[];

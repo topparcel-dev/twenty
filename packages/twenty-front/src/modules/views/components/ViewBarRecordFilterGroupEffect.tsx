@@ -9,7 +9,7 @@ import { hasInitializedCurrentRecordFilterGroupsComponentFamilyState } from '@/v
 import { mapViewFilterGroupsToRecordFilterGroups } from '@/views/utils/mapViewFilterGroupsToRecordFilterGroups';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const ViewBarRecordFilterGroupEffect = () => {
   const currentViewId = useRecoilComponentValueV2(

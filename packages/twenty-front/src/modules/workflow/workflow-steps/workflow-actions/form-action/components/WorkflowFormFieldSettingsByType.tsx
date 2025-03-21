@@ -1,8 +1,7 @@
 import { WorkflowFormActionField } from '@/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowEditActionForm';
+import { assertUnreachable, FieldMetadataType } from 'twenty-shared';
 import { WorkflowFormFieldSettingsNumber } from './WorkflowFormFieldSettingsNumber';
 import { WorkflowFormFieldSettingsText } from './WorkflowFormFieldSettingsText';
-import { assertUnreachable } from 'twenty-shared/utils';
-import { FieldMetadataType } from 'twenty-shared/types';
 
 export const WorkflowFormFieldSettingsByType = ({
   field,

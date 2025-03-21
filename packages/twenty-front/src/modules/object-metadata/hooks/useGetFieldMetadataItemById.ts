@@ -1,6 +1,6 @@
 import { objectMetadataItemsState } from '@/object-metadata/states/objectMetadataItemsState';
 import { useRecoilValue } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const useGetFieldMetadataItemById = () => {
   const objectMetadataItems = useRecoilValue(objectMetadataItemsState);

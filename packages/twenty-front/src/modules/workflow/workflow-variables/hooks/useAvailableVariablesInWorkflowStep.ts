@@ -9,7 +9,7 @@ import {
 import { filterOutputSchema } from '@/workflow/workflow-variables/utils/filterOutputSchema';
 import { isEmptyObject } from '@tiptap/core';
 import { useRecoilValue } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const useAvailableVariablesInWorkflowStep = ({
   objectNameSingularToSelect,

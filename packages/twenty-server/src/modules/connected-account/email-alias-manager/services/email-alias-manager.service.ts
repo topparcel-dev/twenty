@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { assertUnreachable } from 'twenty-shared/utils';
-import { ConnectedAccountProvider } from 'twenty-shared/types';
+import { assertUnreachable, ConnectedAccountProvider } from 'twenty-shared';
 
 import { TwentyORMManager } from 'src/engine/twenty-orm/twenty-orm.manager';
 import { GoogleEmailAliasManagerService } from 'src/modules/connected-account/email-alias-manager/drivers/google/google-email-alias-manager.service';

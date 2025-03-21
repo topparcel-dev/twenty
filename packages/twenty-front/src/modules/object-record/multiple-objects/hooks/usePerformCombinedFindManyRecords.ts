@@ -1,5 +1,6 @@
 import { ApolloClient, gql, useApolloClient } from '@apollo/client';
 import { isUndefined } from '@sniptt/guards';
+import { capitalize } from 'twenty-shared';
 
 import { objectMetadataItemsState } from '@/object-metadata/states/objectMetadataItemsState';
 import { ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
@@ -12,7 +13,6 @@ import { CombinedFindManyRecordsQueryResult } from '@/object-record/multiple-obj
 import { generateCombinedFindManyRecordsQueryVariables } from '@/object-record/multiple-objects/utils/generateCombinedFindManyRecordsQueryVariables';
 import { getCombinedFindManyRecordsQueryFilteringPart } from '@/object-record/multiple-objects/utils/getCombinedFindManyRecordsQueryFilteringPart';
 import { useRecoilValue } from 'recoil';
-import { capitalize } from 'twenty-shared/utils';
 
 export const usePerformCombinedFindManyRecords = () => {
   const client = useApolloClient();

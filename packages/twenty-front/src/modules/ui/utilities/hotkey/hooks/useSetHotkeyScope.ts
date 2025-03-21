@@ -1,6 +1,7 @@
 import { useRecoilCallback } from 'recoil';
 
 import { DEBUG_HOTKEY_SCOPE } from '@/ui/utilities/hotkey/hooks/useScopedHotkeyCallback';
+import { isDefined } from 'twenty-shared';
 import { logDebug } from '~/utils/logDebug';
 
 import { DEFAULT_HOTKEYS_SCOPE_CUSTOM_SCOPES } from '../constants/DefaultHotkeysScopeCustomScopes';
@@ -9,7 +10,6 @@ import { internalHotkeysEnabledScopesState } from '../states/internal/internalHo
 import { AppHotkeyScope } from '../types/AppHotkeyScope';
 import { CustomHotkeyScopes } from '../types/CustomHotkeyScope';
 import { HotkeyScope } from '../types/HotkeyScope';
-import { isDefined } from 'twenty-shared/utils';
 
 const isCustomScopesEqual = (
   customScopesA: CustomHotkeyScopes | undefined,

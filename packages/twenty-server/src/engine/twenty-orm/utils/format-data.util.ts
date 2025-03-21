@@ -1,5 +1,4 @@
-import { capitalize } from 'twenty-shared/utils';
-import { FieldMetadataType } from 'twenty-shared/types';
+import { capitalize, FieldMetadataType } from 'twenty-shared';
 
 import { FieldMetadataInterface } from 'src/engine/metadata-modules/field-metadata/interfaces/field-metadata.interface';
 

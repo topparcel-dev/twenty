@@ -21,7 +21,7 @@ import { computeOptimisticRecordFromInput } from '@/object-record/utils/computeO
 import { getCreateOneRecordMutationResponseField } from '@/object-record/utils/getCreateOneRecordMutationResponseField';
 import { sanitizeRecordInput } from '@/object-record/utils/sanitizeRecordInput';
 import { useRecoilValue } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 type useCreateOneRecordProps = {
   objectNameSingular: string;

@@ -1,4 +1,5 @@
 import { Key } from 'ts-key-enum';
+import { capitalize, isDefined } from 'twenty-shared';
 import {
   AppTooltip,
   IconCopy,
@@ -31,7 +32,6 @@ import { viewPickerReferenceViewIdComponentState } from '@/views/view-picker/sta
 import { useTheme } from '@emotion/react';
 import { useLingui } from '@lingui/react/macro';
 import { DropdownMenuHeaderLeftComponent } from '@/ui/layout/dropdown/components/DropdownMenuHeader/internal/DropdownMenuHeaderLeftComponent';
-import { capitalize, isDefined } from 'twenty-shared/utils';
 
 export const ObjectOptionsDropdownMenuContent = () => {
   const { t } = useLingui();

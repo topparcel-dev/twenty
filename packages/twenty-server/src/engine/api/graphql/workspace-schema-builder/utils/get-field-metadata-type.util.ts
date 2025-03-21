@@ -1,4 +1,5 @@
-import { FieldMetadataType } from 'twenty-shared/types';
+import { FieldMetadataType } from 'twenty-shared';
+
 const typeOrmTypeMapping = new Map<string, FieldMetadataType>([
   ['uuid', FieldMetadataType.UUID],
   ['timestamptz', FieldMetadataType.DATE_TIME],

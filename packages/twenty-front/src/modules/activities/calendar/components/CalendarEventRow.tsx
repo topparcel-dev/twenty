@@ -11,6 +11,7 @@ import { getCalendarEventStartDate } from '@/activities/calendar/utils/getCalend
 import { hasCalendarEventEnded } from '@/activities/calendar/utils/hasCalendarEventEnded';
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
 import { useOpenCalendarEventInCommandMenu } from '@/command-menu/hooks/useOpenCalendarEventInCommandMenu';
+import { isDefined } from 'twenty-shared';
 import {
   Avatar,
   AvatarGroup,
@@ -23,7 +24,6 @@ import {
   CalendarChannelVisibility,
   TimelineCalendarEvent,
 } from '~/generated-metadata/graphql';
-import { isDefined } from 'twenty-shared/utils';
 
 type CalendarEventRowProps = {
   calendarEvent: TimelineCalendarEvent;

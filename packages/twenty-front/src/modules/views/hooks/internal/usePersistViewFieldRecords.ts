@@ -13,7 +13,7 @@ import { useUpdateOneRecordMutation } from '@/object-record/hooks/useUpdateOneRe
 import { GraphQLView } from '@/views/types/GraphQLView';
 import { ViewField } from '@/views/types/ViewField';
 import { isNull } from '@sniptt/guards';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared';
 
 export const usePersistViewFieldRecords = () => {
   const { objectMetadataItem } = useObjectMetadataItem({

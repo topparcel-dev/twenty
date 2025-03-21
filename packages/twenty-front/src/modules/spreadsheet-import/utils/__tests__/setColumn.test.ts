@@ -4,7 +4,7 @@ import {
 } from '@/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep';
 import { Field } from '@/spreadsheet-import/types';
 import { setColumn } from '@/spreadsheet-import/utils/setColumn';
-import { FieldMetadataType } from 'twenty-shared/types';
+import { FieldMetadataType } from 'twenty-shared';
 
 describe('setColumn', () => {
   const defaultField: Field<'Name'> = {

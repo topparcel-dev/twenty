@@ -10,7 +10,8 @@ import {
   SerializableParam,
   WrappedValue,
 } from 'recoil';
-import { isDefined } from 'twenty-shared/utils';
+
+import { isDefined } from 'twenty-shared';
 
 type CreateComponentFamilyStateArgs<
   ValueType,

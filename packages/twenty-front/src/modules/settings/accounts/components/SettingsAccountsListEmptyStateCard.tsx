@@ -6,6 +6,7 @@ import { useTriggerApisOAuth } from '@/settings/accounts/hooks/useTriggerApiOAut
 import styled from '@emotion/styled';
 import { useLingui } from '@lingui/react/macro';
 import { useRecoilValue } from 'recoil';
+import { ConnectedAccountProvider } from 'twenty-shared';
 import {
   Button,
   Card,
@@ -14,7 +15,6 @@ import {
   IconGoogle,
   IconMicrosoft,
 } from 'twenty-ui';
-import { ConnectedAccountProvider } from 'twenty-shared/types';
 
 const StyledHeader = styled(CardHeader)`
   align-items: center;

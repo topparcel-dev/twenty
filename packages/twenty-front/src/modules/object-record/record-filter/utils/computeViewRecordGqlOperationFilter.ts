@@ -18,6 +18,7 @@ import {
   SelectFilter,
   StringFilter,
 } from '@/object-record/graphql/types/RecordGqlOperationFilter';
+import { isDefined } from 'twenty-shared';
 import { Field } from '~/generated/graphql';
 import { generateILikeFiltersForCompositeFields } from '~/utils/array/generateILikeFiltersForCompositeFields';
 
@@ -42,7 +43,6 @@ import { z } from 'zod';
 import { RecordFilterGroup } from '@/object-record/record-filter-group/types/RecordFilterGroup';
 import { RecordFilterGroupLogicalOperator } from '@/object-record/record-filter-group/types/RecordFilterGroupLogicalOperator';
 import { FilterableFieldType } from '@/object-record/record-filter/types/FilterableFieldType';
-import { isDefined } from 'twenty-shared/utils';
 
 type ComputeFilterRecordGqlOperationFilterParams = {
   filterValueDependencies: RecordFilterValueDependencies;

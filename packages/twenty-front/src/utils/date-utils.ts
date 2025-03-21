@@ -4,8 +4,9 @@ import { differenceInCalendarDays, formatDistanceToNow } from 'date-fns';
 import { DateTime } from 'luxon';
 import moize from 'moize';
 
+import { isDefined } from 'twenty-shared';
+
 import { logError } from './logError';
-import { isDefined } from 'twenty-shared/utils';
 
 export const DEFAULT_DATE_LOCALE = 'en-EN';
 
