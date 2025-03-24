@@ -401,6 +401,7 @@ const retrieveExportsByBarrel = (barrelDirectories: string[]) => {
 
 const main = () => {
   const moduleDirectories = getSubDirectoryPaths(SRC_PATH);
+  console.log({moduleDirectories})
   const exportsByBarrel = retrieveExportsByBarrel(moduleDirectories);
   const moduleIndexFiles = generateModuleIndexFiles(exportsByBarrel);
   const packageJsonPreconstructConfigAndFiles =
