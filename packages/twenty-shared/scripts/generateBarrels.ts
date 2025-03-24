@@ -63,7 +63,8 @@ const createTypeScriptFile = ({
 const getLastPathFolder = (pathStr: string) => path.basename(pathStr);
 
 const getSubDirectoryPaths = (directoryPath: string): string[] => {
-  return globSync(path.join(directoryPath, '*/'), {
+  const pattern = path.join(directoryPath, '*', path.sep);
+  return globSync(pattern, {
     ignore: [...EXCLUDED_DIRECTORIES],
     cwd: SRC_PATH,
     nodir: false,
@@ -232,7 +233,7 @@ function getTypeScriptFiles(
   directoryPath: string,
   includeIndex: boolean = false,
 ): string[] {
-  const pattern = path.join(directoryPath, '*', path.sep);
+  const pattern = path.join(directoryPath, '**', '*.{ts,tsx}');
   const files = globSync(pattern, {
     cwd: SRC_PATH,
     ignore: [...EXCLUDED_EXTENSIONS, ...EXCLUDED_DIRECTORIES],
