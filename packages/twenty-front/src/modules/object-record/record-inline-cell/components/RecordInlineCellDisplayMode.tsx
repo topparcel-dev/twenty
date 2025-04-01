@@ -63,13 +63,8 @@ export const RecordInlineCellDisplayMode = ({
 
   const { t } = useLingui();
 
-  const {
-    editModeContentOnly,
-
-    showLabel,
-    label,
-    buttonIcon,
-  } = useRecordInlineCellContext();
+  const { editModeContentOnly, showLabel, label, buttonIcon } =
+    useRecordInlineCellContext();
 
   const isDisplayModeContentEmpty = useIsFieldEmpty();
   const showEditButton =
@@ -84,12 +79,16 @@ export const RecordInlineCellDisplayMode = ({
 
   const emptyPlaceHolder = showLabel ? t`Empty` : label;
 
+  const isPerformanceRating = label === 'Performance Rating';
+
   return (
     <>
       <StyledRecordInlineCellNormalModeOuterContainer isHovered={isFocused}>
         <StyledRecordInlineCellNormalModeInnerContainer>
-          {(isDisplayModeContentEmpty && !shouldDisplayEditModeOnFocus) ||
-          !children ? (
+          {isPerformanceRating ? (
+            children
+          ) : (isDisplayModeContentEmpty && !shouldDisplayEditModeOnFocus) ||
+            !children ? (
             <StyledEmptyField>{emptyPlaceHolder}</StyledEmptyField>
           ) : (
             children
