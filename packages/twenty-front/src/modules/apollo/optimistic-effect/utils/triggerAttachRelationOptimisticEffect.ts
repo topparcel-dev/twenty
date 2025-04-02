@@ -4,6 +4,9 @@ import { RecordGqlRefEdge } from '@/object-record/cache/types/RecordGqlRefEdge';
 import { isObjectRecordConnectionWithRefs } from '@/object-record/cache/utils/isObjectRecordConnectionWithRefs';
 import { capitalize, isDefined } from 'twenty-shared/utils';
 
+console.log("wldjwd")
+
+const tmp : number = '';
 export const triggerAttachRelationOptimisticEffect = ({
   cache,
   sourceObjectNameSingular,

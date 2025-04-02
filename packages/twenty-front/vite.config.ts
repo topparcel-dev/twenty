@@ -26,6 +26,8 @@ export default defineConfig(({ command, mode }) => {
     REACT_APP_PORT,
   } = env;
 
+  console.log(VITE_DISABLE_ESLINT_CHECKER)
+
   const port = isNonEmptyString(REACT_APP_PORT)
     ? parseInt(REACT_APP_PORT)
     : 3001;

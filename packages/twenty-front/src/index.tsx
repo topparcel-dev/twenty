@@ -6,6 +6,7 @@ import { App } from '@/app/components/App';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './index.css';
 
+console.log("SALUT");
 const root = ReactDOM.createRoot(
   document.getElementById('root') ?? document.body,
 );
