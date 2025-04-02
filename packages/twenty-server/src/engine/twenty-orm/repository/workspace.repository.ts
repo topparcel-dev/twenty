@@ -681,4 +681,15 @@ export class WorkspaceRepository<
 
     return formatResult(data, objectMetadata, objectMetadataMaps) as T;
   }
+
+  override createQueryBuilder(alias: string): WorkspaceQueryBuilder<Entity> {
+    const queryBuilder = super.createQueryBuilder(alias);
+    const objectMetadata = this.getObjectMetadataFromTarget();
+
+    return new WorkspaceQueryBuilder(
+      queryBuilder,
+      objectMetadata,
+      this.internalContext.objectMetadataMaps,
+    );
+  }
 }
