@@ -566,13 +566,13 @@ export enum FeatureFlagKey {
   IsCustomDomainEnabled = 'IsCustomDomainEnabled',
   IsEventObjectEnabled = 'IsEventObjectEnabled',
   IsJsonFilterEnabled = 'IsJsonFilterEnabled',
+  IsMeteredProductBillingEnabled = 'IsMeteredProductBillingEnabled',
   IsNewRelationEnabled = 'IsNewRelationEnabled',
   IsPermissionsV2Enabled = 'IsPermissionsV2Enabled',
   IsPostgreSQLIntegrationEnabled = 'IsPostgreSQLIntegrationEnabled',
   IsStripeIntegrationEnabled = 'IsStripeIntegrationEnabled',
   IsUniqueIndexesEnabled = 'IsUniqueIndexesEnabled',
-  IsWorkflowEnabled = 'IsWorkflowEnabled',
-  IsWorkflowFormActionEnabled = 'IsWorkflowFormActionEnabled'
+  IsWorkflowEnabled = 'IsWorkflowEnabled'
 }
 
 export type Field = {
@@ -701,6 +701,12 @@ export type GetAuthorizationUrlForSsoOutput = {
   authorizationURL: Scalars['String']['output'];
   id: Scalars['String']['output'];
   type: Scalars['String']['output'];
+};
+
+export type GetLoginTokenFromEmailVerificationTokenOutput = {
+  __typename?: 'GetLoginTokenFromEmailVerificationTokenOutput';
+  loginToken: AuthToken;
+  workspaceUrls: WorkspaceUrls;
 };
 
 export type GetServerlessFunctionSourceCodeInput = {
@@ -908,7 +914,7 @@ export type Mutation = {
   getAuthTokensFromLoginToken: AuthTokens;
   getAuthorizationUrlForSSO: GetAuthorizationUrlForSsoOutput;
   getLoginTokenFromCredentials: LoginToken;
-  getLoginTokenFromEmailVerificationToken: LoginToken;
+  getLoginTokenFromEmailVerificationToken: GetLoginTokenFromEmailVerificationTokenOutput;
   impersonate: ImpersonateOutput;
   publishServerlessFunction: ServerlessFunction;
   renewToken: AuthTokens;
@@ -942,7 +948,7 @@ export type Mutation = {
   uploadProfilePicture: Scalars['String']['output'];
   uploadWorkspaceLogo: Scalars['String']['output'];
   upsertOneObjectPermission: ObjectPermission;
-  upsertOneSettingPermission: SettingPermission;
+  upsertSettingPermissions: Array<SettingPermission>;
   userLookupAdminPanel: UserLookup;
   validateApprovedAccessDomain: ApprovedAccessDomain;
 };
@@ -1302,8 +1308,8 @@ export type MutationUpsertOneObjectPermissionArgs = {
 };
 
 
-export type MutationUpsertOneSettingPermissionArgs = {
-  upsertSettingPermissionInput: UpsertSettingPermissionInput;
+export type MutationUpsertSettingPermissionsArgs = {
+  upsertSettingPermissionsInput: UpsertSettingPermissionsInput;
 };
 
 
@@ -1843,6 +1849,7 @@ export type Role = {
   id: Scalars['String']['output'];
   isEditable: Scalars['Boolean']['output'];
   label: Scalars['String']['output'];
+  settingPermissions?: Maybe<Array<SettingPermission>>;
   workspaceMembers: Array<WorkspaceMember>;
 };
 
@@ -1952,7 +1959,6 @@ export enum ServerlessFunctionSyncStatus {
 
 export type SettingPermission = {
   __typename?: 'SettingPermission';
-  canUpdateSetting?: Maybe<Scalars['Boolean']['output']>;
   id: Scalars['String']['output'];
   roleId: Scalars['String']['output'];
   setting: SettingPermissionType;
@@ -2256,10 +2262,9 @@ export type UpsertObjectPermissionInput = {
   roleId: Scalars['String']['input'];
 };
 
-export type UpsertSettingPermissionInput = {
-  canUpdateSetting?: InputMaybe<Scalars['Boolean']['input']>;
+export type UpsertSettingPermissionsInput = {
   roleId: Scalars['String']['input'];
-  setting: SettingPermissionType;
+  settingPermissionKeys: Array<SettingPermissionType>;
 };
 
 export type User = {
@@ -2501,16 +2506,16 @@ export type WorkspaceNameAndId = {
   id: Scalars['String']['output'];
 };
 
+export type WorkspaceUrls = {
+  __typename?: 'WorkspaceUrls';
+  customUrl?: Maybe<Scalars['String']['output']>;
+  subdomainUrl: Scalars['String']['output'];
+};
+
 export type WorkspaceUrlsAndId = {
   __typename?: 'WorkspaceUrlsAndId';
   id: Scalars['String']['output'];
   workspaceUrls: WorkspaceUrls;
-};
-
-export type WorkspaceUrls = {
-  __typename?: 'workspaceUrls';
-  customUrl?: Maybe<Scalars['String']['output']>;
-  subdomainUrl: Scalars['String']['output'];
 };
 
 export type RemoteServerFieldsFragment = { __typename?: 'RemoteServer', id: string, createdAt: any, foreignDataWrapperId: string, foreignDataWrapperOptions?: any | null, foreignDataWrapperType: string, updatedAt: any, schema?: string | null, label: string, userMappingOptions?: { __typename?: 'UserMappingOptionsUser', user?: string | null } | null };
