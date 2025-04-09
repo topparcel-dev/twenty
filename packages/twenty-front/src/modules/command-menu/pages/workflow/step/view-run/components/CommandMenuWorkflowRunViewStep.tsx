@@ -87,9 +87,6 @@ export const CommandMenuWorkflowRunViewStep = () => {
       <StyledContainer>
         <StyledTabList
           tabs={tabs}
-          initialActiveTabId={
-            !areInputAndOutputTabsDisabled ? WorkflowRunTabId.OUTPUT : undefined
-          }
           behaveAsLinks={false}
           componentInstanceId={
             WORKFLOW_RUN_STEP_SIDE_PANEL_TAB_LIST_COMPONENT_ID

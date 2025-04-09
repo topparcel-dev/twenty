@@ -1,6 +1,5 @@
 import { useWorkflowCommandMenu } from '@/command-menu/hooks/useWorkflowCommandMenu';
 import { activeTabIdComponentState } from '@/ui/layout/tab/states/activeTabIdComponentState';
-import { getSnapshotValue } from '@/ui/utilities/state/utils/getSnapshotValue';
 import { workflowIdState } from '@/workflow/states/workflowIdState';
 import { workflowSelectedNodeState } from '@/workflow/workflow-diagram/states/workflowSelectedNodeState';
 import {
@@ -9,7 +8,6 @@ import {
 } from '@/workflow/workflow-diagram/types/WorkflowDiagram';
 import { getWorkflowNodeIconKey } from '@/workflow/workflow-diagram/utils/getWorkflowNodeIconKey';
 import { WORKFLOW_RUN_STEP_SIDE_PANEL_TAB_LIST_COMPONENT_ID } from '@/workflow/workflow-steps/constants/WorkflowRunStepSidePanelTabListComponentId';
-import { WorkflowRunTabId } from '@/workflow/workflow-steps/types/WorkflowRunTabId';
 import { TRIGGER_STEP_ID } from '@/workflow/workflow-trigger/constants/TriggerStepId';
 import { OnSelectionChangeParams, useOnSelectionChange } from '@xyflow/react';
 import { useCallback } from 'react';
@@ -24,27 +22,17 @@ export const WorkflowRunDiagramCanvasEffect = () => {
 
   const workflowId = useRecoilValue(workflowIdState);
 
-  const goBackToFirstWorkflowRunRightDrawerTabIfNeeded = useRecoilCallback(
-    ({ snapshot, set }) =>
-      () => {
-        const activeWorkflowRunRightDrawerTab = getSnapshotValue(
-          snapshot,
+  const setDefaultWorkflowRunRightDrawerTab = useRecoilCallback(
+    ({ set }) =>
+      ({ nodeId }: { nodeId: string }) => {
+        const defaultTab = nodeId === TRIGGER_STEP_ID ? 'node' : 'output';
+
+        set(
           activeTabIdComponentState.atomFamily({
             instanceId: WORKFLOW_RUN_STEP_SIDE_PANEL_TAB_LIST_COMPONENT_ID,
           }),
-        ) as WorkflowRunTabId | null;
-
-        if (
-          activeWorkflowRunRightDrawerTab === 'input' ||
-          activeWorkflowRunRightDrawerTab === 'output'
-        ) {
-          set(
-            activeTabIdComponentState.atomFamily({
-              instanceId: WORKFLOW_RUN_STEP_SIDE_PANEL_TAB_LIST_COMPONENT_ID,
-            }),
-            'node',
-          );
-        }
+          defaultTab,
+        );
       },
     [],
   );
@@ -61,28 +49,24 @@ export const WorkflowRunDiagramCanvasEffect = () => {
 
       const selectedNodeData = selectedNode.data as WorkflowDiagramStepNodeData;
 
-      if (
-        selectedNode.id === TRIGGER_STEP_ID ||
-        selectedNodeData.runStatus === 'not-executed' ||
-        selectedNodeData.runStatus === 'running'
-      ) {
-        goBackToFirstWorkflowRunRightDrawerTabIfNeeded();
-      }
-
       if (isDefined(workflowId)) {
         openWorkflowRunViewStepInCommandMenu(
           workflowId,
           selectedNodeData.name,
           getIcon(getWorkflowNodeIconKey(selectedNodeData)),
         );
+
+        setDefaultWorkflowRunRightDrawerTab({
+          nodeId: selectedNode.id,
+        });
       }
     },
     [
       setWorkflowSelectedNode,
       workflowId,
-      getIcon,
-      goBackToFirstWorkflowRunRightDrawerTabIfNeeded,
+      setDefaultWorkflowRunRightDrawerTab,
       openWorkflowRunViewStepInCommandMenu,
+      getIcon,
     ],
   );
 
