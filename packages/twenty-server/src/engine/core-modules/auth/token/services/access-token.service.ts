@@ -68,10 +68,12 @@ export class AccessTokenService {
     workspaceValidator.assertIsDefinedOrThrow(workspace);
 
     if (isWorkspaceActiveOrSuspended(workspace)) {
+      const shouldBypassPermissionChecks = true;
       const workspaceMemberRepository =
         await this.twentyORMGlobalManager.getRepositoryForWorkspace<WorkspaceMemberWorkspaceEntity>(
           workspaceId,
           'workspaceMember',
+          shouldBypassPermissionChecks,
         );
 
       const workspaceMember = await workspaceMemberRepository.findOne({

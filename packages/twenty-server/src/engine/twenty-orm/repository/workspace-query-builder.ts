@@ -9,9 +9,9 @@ export class WorkspaceQueryBuilder<
   constructor(
     queryBuilder: SelectQueryBuilder<T>,
     objectRecordsPermissions: ObjectRecordsPermissions,
+    shouldBypassPermissionChecks: boolean,
   ) {
-    super(queryBuilder, objectRecordsPermissions);
-    this.objectRecordsPermissions = objectRecordsPermissions;
+    super(queryBuilder, objectRecordsPermissions, shouldBypassPermissionChecks);
   }
 
   override clone(): this {
@@ -20,6 +20,7 @@ export class WorkspaceQueryBuilder<
     return new WorkspaceQueryBuilder(
       clonedQueryBuilder,
       this.objectRecordsPermissions,
+      this.shouldBypassPermissionChecks,
     ) as this;
   }
 }

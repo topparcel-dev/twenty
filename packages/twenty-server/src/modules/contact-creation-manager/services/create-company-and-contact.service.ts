@@ -40,6 +40,8 @@ export class CreateCompanyAndContactService {
     private readonly exceptionHandlerService: ExceptionHandlerService,
   ) {}
 
+  private shouldBypassPermissionChecks = true;
+
   private async createCompaniesAndPeople(
     connectedAccount: ConnectedAccountWorkspaceEntity,
     contactsToCreate: Contact[],
@@ -55,6 +57,7 @@ export class CreateCompanyAndContactService {
       await this.twentyORMGlobalManager.getRepositoryForWorkspace(
         workspaceId,
         PersonWorkspaceEntity,
+        this.shouldBypassPermissionChecks,
       );
 
     const workspaceMembers =
@@ -189,6 +192,7 @@ export class CreateCompanyAndContactService {
         await this.twentyORMGlobalManager.getRepositoryForWorkspace(
           workspaceId,
           WorkspaceMemberWorkspaceEntity,
+          this.shouldBypassPermissionChecks,
         );
 
       const workspaceMember = await workspaceMemberRepository.findOne({

@@ -73,10 +73,13 @@ export class GoogleAPIsService {
       'CALENDAR_PROVIDER_GOOGLE_ENABLED',
     );
 
+    const shouldBypassPermissionChecks = true;
+
     const connectedAccountRepository =
       await this.twentyORMGlobalManager.getRepositoryForWorkspace<ConnectedAccountWorkspaceEntity>(
         workspaceId,
         'connectedAccount',
+        shouldBypassPermissionChecks,
       );
 
     const connectedAccount = await connectedAccountRepository.findOne({
@@ -90,12 +93,14 @@ export class GoogleAPIsService {
       await this.twentyORMGlobalManager.getRepositoryForWorkspace<CalendarChannelWorkspaceEntity>(
         workspaceId,
         'calendarChannel',
+        shouldBypassPermissionChecks,
       );
 
     const messageChannelRepository =
       await this.twentyORMGlobalManager.getRepositoryForWorkspace<MessageChannelWorkspaceEntity>(
         workspaceId,
         'messageChannel',
+        shouldBypassPermissionChecks,
       );
 
     const workspaceDataSource =
@@ -248,6 +253,7 @@ export class GoogleAPIsService {
           await this.twentyORMGlobalManager.getRepositoryForWorkspace<WorkspaceMemberWorkspaceEntity>(
             workspaceId,
             'workspaceMember',
+            shouldBypassPermissionChecks,
           );
 
         const workspaceMember = await workspaceMemberRepository.findOneOrFail({
